@@ -2,6 +2,7 @@ package com.mosaic.util;
 
 import com.mosaic.pages.adminModule.AdminLoginPage;
 import com.mosaic.util.adminModule.ElementsMenu;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.Keys;
@@ -394,11 +395,12 @@ public class TestBase {
         executor.executeScript("arguments[0].click();", element);
     }
 
-    public void javaScriptSendKeys(String text, WebElement element){
+    public void javaScriptSendKeys(String text, WebElement element) {
 
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        jse .executeScript("document.getElementById('mui-27').value='Offer Name'");
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("document.getElementById('mui-27').value='Offer Name'");
     }
+
     public void actionClick(WebElement targetElement) {
         Actions builder = new Actions(driver);
         builder.moveToElement(targetElement).click();
@@ -505,7 +507,7 @@ public class TestBase {
         return propertyValue;
     }
 
-    public static String getTodaydate(){
+    public static String getTodaydate() {
         LocalDate date = LocalDate.now(ZoneId.of("America/Montreal"));
         DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String today = date.format(formatter1);
@@ -519,10 +521,12 @@ public class TestBase {
         Thread.sleep(3000);
     }
 
-    public String getAttributeValue(WebElement element){
-       return element.getAttribute("value");
+    public String getAttributeValue(WebElement element) {
+        return element.getAttribute("value");
     }
 
-
+    public String replacement(String fullText, String needToremoveText) {
+        return StringUtils.remove(fullText, needToremoveText);
+    }
 
 }

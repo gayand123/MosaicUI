@@ -21,6 +21,14 @@ public class AdminMenuPage extends TestBase {
     private WebElement btnLoyalty;
     @FindBy(xpath = ElementsMenu.lblRedeemPoints)
     private WebElement lblRedeemPoints;
+
+    @FindBy(xpath = ElementsMenu.btnCustomers)
+    private WebElement btnCustomers;
+
+
+    @FindBy(xpath = ElementsMenu.btnCloseMenuForm)
+    private WebElement btnCloseMenuForm;
+
     public void clickMenu(){
         waitUntilVisibilityOfElement(By.xpath(ElementsMenu.btnMenu));
         clickOnElement(btnMenu);
@@ -38,8 +46,17 @@ public class AdminMenuPage extends TestBase {
         clickOnElement(btnLoyalty);
     }
 
+    public void clickbtnCustomers(){
+        waitUntilVisibilityOfElement(By.xpath(ElementsMenu.btnCustomers));
+        clickOnElement(btnCustomers);
+    }
+
     public String getTextOfRedeemPoints(){
         waitUntilVisibilityOfElement(By.xpath(ElementsMenu.lblRedeemPoints));
        return getElementText(lblRedeemPoints);
+    }
+
+    public void closeMenu(){
+        clickOnElement(btnCloseMenuForm);
     }
 }
