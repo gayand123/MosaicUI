@@ -19,9 +19,16 @@ public class AdminCustomerPage extends TestBase {
     private WebElement drpDownResultPerPage30;
     @FindBy(xpath = ElementsCustomers.drpDownResultPerPage100)
     private WebElement drpDownResultPerPage100;
+
+    @FindBy(xpath = ElementsCustomers.btnViewEditPoints)
+    private WebElement btnViewEditPoints;
+    @FindBy(xpath = ElementsCustomers.lblViewEditPointsText)
+    private WebElement lblViewEditPointsText;
+
     public String getCustomerText() {
         return getElementText(lblCustomers);
     }
+
 
     public void clickNextPageInCustomers() {
         if (isElementEnabled(btnNextPageArrow) == true) {
@@ -140,7 +147,47 @@ public void clickResultPerPageValue(int resultPerPage){
     }
 
 
+    public void clickSpecificEmailActionInCustomersList(double resultPerPage,String customerEmail) throws InterruptedException {
 
+        double customerCount = getCustomerCount();
+        System.out.println("customerCount "+ customerCount);
+        System.out.println("resultPerPage"+ resultPerPage);
+        double pageCount = customerCount/ resultPerPage;
+        System.out.println("pageCount" + pageCount);
+        int correctPageCount= (int) Math.ceil(pageCount);
+        System.out.println("correctPageCount "+ correctPageCount);
+        int tempCustomerCount = 0;
+        int rowCount = 0;
+        boolean isEmailavailable = false;
+        //   int rowCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
+        for (int temp = 0; temp <= correctPageCount; temp++) {
+            tempCustomerCount = driver.findElements(By.xpath(ElementsCustomers.lblCustomersEmail)).size();
+            System.out.println("tempCustomerCount "+tempCustomerCount);
 
+            for ( int x=0; x<tempCustomerCount; x++) {
+                String email = driver.findElements(By.xpath(ElementsCustomers.lblCustomersEmail)).get(x).getText();
+                System.out.println("email "+ email);
+                if(email.contains(customerEmail)){
+                    isEmailavailable =  true;
+                    driver.findElement(By.xpath(ElementsCustomers.prebtnActionCustomer+x+1+ElementsCustomers.postbtnActionCustomer)).click();
+                    break;
+                }
 
+            }
+            rowCount = rowCount + tempCustomerCount;
+            if (isElementEnabled(btnNextPageArrow) == true) {
+                clickOnElement(btnNextPageArrow);
+            }
+            scrollDown();
+            System.out.println("rowCount  " + rowCount);
+        }
+        System.out.println("total row Count  " + rowCount);
+     //   return isEmailavailable;
+    }
+public void clickViewEditPoints(){
+        clickOnElement(btnViewEditPoints);
+}
+public String getViewEditPointsText(){
+        return getElementText(lblViewEditPointsText);
+}
 }
