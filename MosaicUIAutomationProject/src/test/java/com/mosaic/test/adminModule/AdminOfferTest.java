@@ -5,21 +5,10 @@ import com.mosaic.pages.adminModule.AdminMenuPage;
 import com.mosaic.pages.adminModule.AdminOfferPage;
 import com.mosaic.util.DomainConstants;
 import com.mosaic.util.TestBase;
-import org.apache.commons.io.filefilter.TrueFileFilter;
-import org.junit.experimental.theories.Theories;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.security.PublicKey;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Date;
-import java.util.Locale;
 
 public class AdminOfferTest extends TestBase {
     @BeforeClass
@@ -44,6 +33,9 @@ public class AdminOfferTest extends TestBase {
         adminOfferPage.enterStartDate();
         adminOfferPage.enterEndDate("09/01/2022");
         adminOfferPage.enterPromoCode(DomainConstants.promoCode);
+        Thread.sleep(2000);
+        adminOfferPage.clickBrowseImage();
+        adminOfferPage.clickUploadImage();
         adminOfferPage.selectOfferTypeGroup("Discount");
         adminOfferPage.selectOfferType("SignUp");
         Thread.sleep(2000);
@@ -71,6 +63,7 @@ public class AdminOfferTest extends TestBase {
         adminOfferPage.enterStartDate();
         adminOfferPage.enterEndDate("09/01/2022");
         adminOfferPage.enterPromoCode(DomainConstants.promoCode);
+        adminOfferPage.clickBrowseImage();
         adminOfferPage.selectOfferTypeGroup("Discount");
         adminOfferPage.selectOfferType("OrderTotal");
         Thread.sleep(2000);
@@ -99,6 +92,7 @@ public class AdminOfferTest extends TestBase {
         adminOfferPage.enterStartDate();
         adminOfferPage.enterEndDate("09/01/2022");
         adminOfferPage.enterPromoCode(DomainConstants.promoCode);
+        adminOfferPage.clickBrowseImage();
         adminOfferPage.selectOfferTypeGroup("Discount");
         adminOfferPage.selectOfferType("BirthDay");
         Thread.sleep(2000);
@@ -127,6 +121,7 @@ public class AdminOfferTest extends TestBase {
         adminOfferPage.enterStartDate();
         adminOfferPage.enterEndDate("09/01/2022");
         adminOfferPage.enterPromoCode(DomainConstants.promoCode);
+        adminOfferPage.clickBrowseImage();
         adminOfferPage.selectOfferTypeGroup("Discount");
         adminOfferPage.selectOfferType("SignUp");
         Thread.sleep(2000);

@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.File;
+
 public class AdminOfferPage extends TestBase {
     @FindBy(xpath = ElementsOffers.btnCreateOffer)
     private WebElement btnCreateOffer;
@@ -76,22 +78,28 @@ public class AdminOfferPage extends TestBase {
     private WebElement lblOfferTypeGroupRequiredMessage;
     @FindBy(xpath = ElementsOffers.lblEndDateGreaterThanStartDateOfferErrorMessage)
     private WebElement lblEndateGreaterThanStartDateOfferErrorMessage;
+    @FindBy(xpath = ElementsOffers.btnBrowseImage)
+    private WebElement btnBrowseImage;
+    @FindBy(xpath = ElementsOffers.btnUploadImage)
+    private WebElement btnUploadImage;
 
 
-    public void clickCreatebtnOffer(){
+    public void clickCreatebtnOffer() {
         waitUntilVisibilityOfElement(By.xpath(ElementsOffers.btnCreateOffer));
         clickOnElement(btnCreateOffer);
     }
-    public void clickDropDownBtnStoreLocation(){
+
+    public void clickDropDownBtnStoreLocation() {
         waitUntilVisibilityOfElement(By.xpath(ElementsOffers.btnDropDownStoreLocation));
         clickOnElement(btnDropDownStoreLocation);
     }
 
-    public void clickCheckBoxAllStoreLocation(){
+    public void clickCheckBoxAllStoreLocation() {
         waitUntilVisibilityOfElement(By.xpath(ElementsOffers.checkBoxAllStore));
         clickOnElement(checkBoxAllStore);
     }
-    public void moveToElement(){
+
+    public void moveToElement() {
         waitUntilVisibilityOfElement(By.xpath(ElementsOffers.checkBoxAllStore));
         clickOnElement(checkBoxAllStore);
     }
@@ -100,57 +108,66 @@ public class AdminOfferPage extends TestBase {
 
         moveAndClick(txtPromoCode);
     }
+
     public void enterOfferName(String offerName) throws InterruptedException {
         moveAndClick(txtOfferName);
-       // Thread.sleep(1000);
+        // Thread.sleep(1000);
         txtOfferName.sendKeys(offerName);
 
     }
-    public void enterStartDate(){
+
+    public void enterStartDate() {
         selectValueFromAutoSuggestionListInTextField(txtStartDate, getTodaydate());
     }
 
-    public void enterEndDate(String endDate){
-        selectValueFromAutoSuggestionListInTextField(txtEndDate,endDate);
+    public void enterEndDate(String endDate) {
+        selectValueFromAutoSuggestionListInTextField(txtEndDate, endDate);
     }
+
     public void enterPromoCode(String promocode) {
-       // moveAndClick(txtPromoCode);
+        // moveAndClick(txtPromoCode);
         clearAndType(txtPromoCode, promocode);
     }
 
-    public void selectOfferTypeGroup(String offerTypeGroup){
+    public void selectOfferTypeGroup(String offerTypeGroup) {
         clickOnElement(btnDropDownOfferTypeGroup);
-        if(offerTypeGroup == "Discount"){
-        System.out.println("I'm innnn");
+        if (offerTypeGroup == "Discount") {
+            System.out.println("I'm innnn");
             clickOnElement(lblSelectDiscountOffer);
-        }if(offerTypeGroup == "DateTime"){
+        }
+        if (offerTypeGroup == "DateTime") {
             clickOnElement(lbnDateTimeffer);
         }
 
     }
-    public void selectOfferType(String offerTypeName){
+
+    public void selectOfferType(String offerTypeName) {
         clickOnElement(btnDropDownOfferType);
-        if(offerTypeName=="SignUp"){
+        if (offerTypeName == "SignUp") {
             clickOnElement(lblSelectSignUpOffer);
 
-        } if(offerTypeName=="OrderTotal"){
+        }
+        if (offerTypeName == "OrderTotal") {
             clickOnElement(lblSelectOrderTotalOffer);
         }
-      if(offerTypeName=="BirthDay"){
-       clickOnElement(lblSelectBirthDayOffer);
-    }
+        if (offerTypeName == "BirthDay") {
+            clickOnElement(lblSelectBirthDayOffer);
+        }
 
 
     }
+
     public String getOfferExpireDays() throws InterruptedException {
         scrollDown();
         String expDays = getAttributeValue(txtOfferExpiredate);
         return expDays;
     }
-    public void clickPercentageDiscount(){
+
+    public void clickPercentageDiscount() {
 
         clickOnElement(radioBtnDiscount);
     }
+
     public void enterDiscountAmount() {
         clearAndType(txtDiscountAmount, DomainConstants.discountAmount);
     }
@@ -159,39 +176,51 @@ public class AdminOfferPage extends TestBase {
         clearAndType(txtMinimumOrderAmount, DomainConstants.minimumOrderamount);
     }
 
-    public void clickSaveOffer(){
+    public void clickSaveOffer() {
         clickOnElement(btnSaveOffer);
     }
 
-   public String getOfferSavingErrorMessage(){
+    public String getOfferSavingErrorMessage() {
         String errorMessage = getElementText(lblOfferSavingErrorMessage);
         return errorMessage;
-   }
-   public void clickCloseOfferCreation(){
-        clickOnElement(btnCloseCreateOfferPage);
-   }
-    public boolean isCreateOfferButtonVisible(){
-        waitUntilVisibilityOfElement(By.xpath(ElementsOffers.btnCreateOffer));
-      return   isElementPresentAndDisplay(btnCreateOffer);
     }
 
-    public String getReuiredErrorMessageInOfferName(){
+    public void clickCloseOfferCreation() {
+        clickOnElement(btnCloseCreateOfferPage);
+    }
+
+    public boolean isCreateOfferButtonVisible() {
+        waitUntilVisibilityOfElement(By.xpath(ElementsOffers.btnCreateOffer));
+        return isElementPresentAndDisplay(btnCreateOffer);
+    }
+
+    public String getReuiredErrorMessageInOfferName() {
         return getElementText(lblOfferNameRequiredMessage);
     }
 
 
-    public String getReuiredErrorMessageInOfferStartDate(){
+    public String getReuiredErrorMessageInOfferStartDate() {
         return getElementText(lblOfferStartDateRequiredMessage);
     }
 
-    public String getReuiredErrorMessageInOfferTypeGroup(){
+    public String getReuiredErrorMessageInOfferTypeGroup() {
         return getElementText(lblOfferTypeGroupRequiredMessage);
     }
 
-    public String getEndDateGreaterThanStartDateOfferErrorMessage(){
+    public String getEndDateGreaterThanStartDateOfferErrorMessage() {
         return getElementText(lblEndateGreaterThanStartDateOfferErrorMessage);
     }
 
+    public void clickBrowseImage() {
+        javaScriptClick(btnBrowseImage);
+        File file = new File("images\\NewOffer.PNG");
+        System.out.println(file.getAbsolutePath());
+        btnBrowseImage.sendKeys(file.getAbsolutePath());
+    }
+
+    public void clickUploadImage(){
+        clickOnElement(btnUploadImage);
+    }
 }
 
 

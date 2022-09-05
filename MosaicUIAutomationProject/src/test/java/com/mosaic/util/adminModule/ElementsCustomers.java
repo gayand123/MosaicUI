@@ -13,4 +13,11 @@ public class ElementsCustomers {
 
     public static final String lblCustomersEmail ="//div[@class='MuiDataGrid-virtualScrollerRenderZone css-1inm7gi']/div/div[3]/p";
 
+    public static final String prebtnActionCustomer ="//*[@id=\"__next\"]/div/div[2]/div/div[2]/div[1]/div/div[2]/div[2]/div/div/div/div[";
+    public static final String postbtnActionCustomer="]/div[5]/button";
+
+    public static final String btnViewEditPoints ="//*[@id='long-menu']/div[3]/ul/li[1]";
+
+    public static final String lblViewEditPointsText ="/html/body/div[3]/div[3]/div[1]/div/h6";
+
 }

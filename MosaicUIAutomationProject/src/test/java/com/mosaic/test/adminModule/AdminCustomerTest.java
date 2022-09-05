@@ -51,7 +51,22 @@ public class AdminCustomerTest extends TestBase {
         Thread.sleep(2000);
         AdminCustomerPage adminCustomerPage = PageFactory.initElements(driver, AdminCustomerPage.class);
         Assert.assertEquals(adminCustomerPage.getCustomerText().contains("Customers"), true);
-        Assert.assertEquals(adminCustomerPage.isSpecificEmailAvailableInCustomersList(DomainConstants.resultPerPage10,"gayandunuwila+qa100333@gmail.com"),true);
+        Assert.assertEquals(adminCustomerPage.isSpecificEmailAvailableInCustomersList(DomainConstants.resultPerPage10,"gayandunuwila+qa100@gmail.com"),true);
+
+    }
+
+    @Test
+    public void verifyEditCustomerInCustomerList() throws InterruptedException {
+        AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
+        adminMenuPage.clickMenu();
+        adminMenuPage.clickbtnCustomers();
+        Thread.sleep(2000);
+        AdminCustomerPage adminCustomerPage = PageFactory.initElements(driver, AdminCustomerPage.class);
+        Assert.assertEquals(adminCustomerPage.getCustomerText().contains("Customers"), true);
+        adminCustomerPage.clickSpecificEmailActionInCustomersList(DomainConstants.resultPerPage10,"gayandunuwila+qa100@gmail.com");
+        Thread.sleep(2000);
+        adminCustomerPage.clickViewEditPoints();
+        Assert.assertEquals(adminCustomerPage.getViewEditPointsText(),"Loyalty Points Summary");
 
     }
 }
