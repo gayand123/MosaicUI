@@ -40,7 +40,7 @@ public class AdminCustomerTest extends TestBase {
         Thread.sleep(2000);
         adminCustomerPage.clickResultPerpage();
         adminCustomerPage.clickResultPerPageValue(DomainConstants.resultPerPage30);
-        Assert.assertEquals(adminCustomerPage.getRowCount30InCustomers(DomainConstants.resultPerPage30),adminCustomerPage.getCustomerCount());
+        Assert.assertEquals(adminCustomerPage.getRowCount301InCustomers(DomainConstants.resultPerPage30),adminCustomerPage.getCustomerCount());
     }
 
     @Test

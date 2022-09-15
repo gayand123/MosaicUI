@@ -3,9 +3,15 @@ package com.mosaic.pages.adminModule;
 import com.mosaic.util.DomainConstants;
 import com.mosaic.util.adminModule.ElementsOffers;
 import com.mosaic.util.TestBase;
+import org.junit.experimental.theories.Theories;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.KeyUpAction;
 import org.openqa.selenium.support.FindBy;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Key;
+import org.sikuli.script.Screen;
+
 
 import java.io.File;
 
@@ -82,13 +88,19 @@ public class AdminOfferPage extends TestBase {
     private WebElement btnBrowseImage;
     @FindBy(xpath = ElementsOffers.btnUploadImage)
     private WebElement btnUploadImage;
-
+    @FindBy(xpath = ElementsOffers.lblErrorMessageSmallImage)
+    private WebElement lblErrorMessageSmallImage;
+    @FindBy(xpath = ElementsOffers.btnCloseOfferCreation)
+    private WebElement btnCloseOfferCreation;
 
     public void clickCreatebtnOffer() {
         waitUntilVisibilityOfElement(By.xpath(ElementsOffers.btnCreateOffer));
         clickOnElement(btnCreateOffer);
     }
 
+    public void clickCloseOfferForm(){
+        clickOnElement(btnCloseOfferCreation);
+    }
     public void clickDropDownBtnStoreLocation() {
         waitUntilVisibilityOfElement(By.xpath(ElementsOffers.btnDropDownStoreLocation));
         clickOnElement(btnDropDownStoreLocation);
@@ -211,15 +223,44 @@ public class AdminOfferPage extends TestBase {
         return getElementText(lblEndateGreaterThanStartDateOfferErrorMessage);
     }
 
-    public void clickBrowseImage() {
+    public void clickBrowseImage() throws FindFailed, InterruptedException {
         javaScriptClick(btnBrowseImage);
-        File file = new File("images\\NewOffer.PNG");
-        System.out.println(file.getAbsolutePath());
-        btnBrowseImage.sendKeys(file.getAbsolutePath());
+        Thread.sleep(2000);
+        //  File file = new File("images\\NewOffer.PNG");
+        //   System.out.println(file.getAbsolutePath());
+        //  btnBrowseImage.sendKeys(file.getAbsolutePath());
+        Screen screen = new Screen();
+        screen.find("D:\\MosaicUIAutomationProject\\MosaicUIAutomationProject\\MosaicUIAutomationProject\\images\\filename.png").click();
+        screen.type("D:\\MosaicUIAutomationProject\\MosaicUIAutomationProject\\MosaicUIAutomationProject\\images\\NewOffer.png");
+        Thread.sleep(2000);
+     //   screen.find("D:\\MosaicUIAutomationProject\\MosaicUIAutomationProject\\MosaicUIAutomationProject\\images\\1662388240258.png");
+       // screen.click();
+        screen.type(Key.ENTER);
+
+    }
+    public void clickBrowseImage(String filePath,String imagePath) throws FindFailed, InterruptedException {
+        javaScriptClick(btnBrowseImage);
+        Thread.sleep(2000);
+        //  File file = new File("images\\NewOffer.PNG");
+        //   System.out.println(file.getAbsolutePath());
+        //  btnBrowseImage.sendKeys(file.getAbsolutePath());
+        Screen screen = new Screen();
+        screen.find(filePath).click();
+        screen.type(imagePath);
+      //  Thread.sleep(2000);
+        //   screen.find("D:\\MosaicUIAutomationProject\\MosaicUIAutomationProject\\MosaicUIAutomationProject\\images\\1662388240258.png");
+        // screen.click();
+        screen.type(Key.ENTER);
+        screen.type(Key.ENTER);
     }
 
-    public void clickUploadImage(){
+    public void clickUploadImage() {
+
         clickOnElement(btnUploadImage);
+    }
+
+    public String smallImageErrorMessage(){
+        return getElementText(lblErrorMessageSmallImage);
     }
 }
 
