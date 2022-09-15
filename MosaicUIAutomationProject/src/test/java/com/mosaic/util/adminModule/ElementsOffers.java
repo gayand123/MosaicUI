@@ -1,5 +1,7 @@
 package com.mosaic.util.adminModule;
 
+import org.python.antlr.ast.Str;
+
 public class ElementsOffers {
 
     public static final String btnCreateOffer="//*[@id=\"__next\"]/div/div[2]/div/div/div/div[1]/div[2]/button/span[2]";
@@ -53,5 +55,7 @@ public class ElementsOffers {
 
     public static final String lblEndDateGreaterThanStartDateOfferErrorMessage = "/html/body/div[3]/div[3]/div/form/div/div[1]/div[2]/div[2]/div[3]/div[2]/div/div[3]/h6";
     public static final String btnBrowseImage = "//*[@id=\"raised-button-file\"]";
-    public static final String  btnUploadImage ="//div[@class='MuiGrid-root css-174xpwg']";
+    public static final String  btnUploadImage ="/html/body/div[3]/div[3]/div/form/div/div[1]/div[2]/div[2]/div[5]/div/div/div/div[3]";
+    public static final String lblErrorMessageSmallImage ="/html/body/div[3]/div[3]/div/form/div/div[1]/div[2]/div[2]/div[5]/div/div[2]/h6";
+    public static final String btnCloseOfferCreation ="/html/body/div[3]/div[3]/div/form/div/div[1]/div[1]/button";
 }

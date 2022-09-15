@@ -5,8 +5,11 @@ import com.mosaic.util.TestBase;
 import com.mosaic.util.adminModule.ElementsCustomers;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class AdminCustomerPage extends TestBase {
     @FindBy(xpath = ElementsCustomers.lblCustomers)
@@ -26,6 +29,11 @@ public class AdminCustomerPage extends TestBase {
     private WebElement lblViewEditPointsText;
 
     public String getCustomerText() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return getElementText(lblCustomers);
     }
 
@@ -39,17 +47,20 @@ public class AdminCustomerPage extends TestBase {
 
     public int getRowCountInCustomers(double resultPerPage) throws InterruptedException {
         double customerCount = getCustomerCount();
-        System.out.println("customerCount "+customerCount);
-        System.out.println("resultPerPage"+resultPerPage);
-        double pageCount =customerCount/resultPerPage;
+        System.out.println("customerCount " + customerCount);
+        System.out.println("resultPerPage" + resultPerPage);
+        double pageCount = customerCount / resultPerPage;
         System.out.println("pageCount" + pageCount);
-       int correctPageCount= (int) Math.ceil(pageCount);
-        System.out.println("correctPageCount "+correctPageCount);
+        int correctPageCount = (int) Math.ceil(pageCount);
+        System.out.println("correctPageCount " + correctPageCount);
         int tempCustomerCount = 0;
         int rowCount = 0;
         //   int rowCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
-        for (int temp = 0; temp <= correctPageCount; temp++) {
-           tempCustomerCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
+        for (int temp = 0; temp < correctPageCount; temp++) {
+            List<WebElement> listRecords = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts));
+            //  tempCustomerCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
+            tempCustomerCount = listRecords.size();
+            System.out.println(tempCustomerCount + "tempCustomerCount");
             rowCount = rowCount + tempCustomerCount;
             if (isElementEnabled(btnNextPageArrow) == true) {
                 clickOnElement(btnNextPageArrow);
@@ -58,11 +69,13 @@ public class AdminCustomerPage extends TestBase {
             System.out.println("rowCount  " + rowCount);
         }
         System.out.println("total row Count  " + rowCount);
+        System.out.println("rowCount " + rowCount);
         return rowCount;
     }
 
     public int getCustomerCount() {
         String customerCount = replacement(getCustomerText(), "Customers ");
+        System.out.println(customerCount + "customerCount");
         String result = StringUtils.substringBetween(customerCount, "(", ")");
         System.out.println("result " + result);
         int intcustomerCount = 0;
@@ -72,26 +85,27 @@ public class AdminCustomerPage extends TestBase {
         return intcustomerCount;
     }
 
-public void clickResultPerpage(){
-    moveAndClick(drpDownResultPerPage);
-}
-
-public void clickResultPerPageValue(int resultPerPage){
-        if(resultPerPage ==30) {
-            moveAndClick(drpDownResultPerPage30);
-        } if (resultPerPage==100){
-            moveAndClick(drpDownResultPerPage100);
+    public void clickResultPerpage() {
+        moveAndClick(drpDownResultPerPage);
     }
-}
+
+    public void clickResultPerPageValue(int resultPerPage) {
+        if (resultPerPage == 30) {
+            moveAndClick(drpDownResultPerPage30);
+        }
+        if (resultPerPage == 100) {
+            moveAndClick(drpDownResultPerPage100);
+        }
+    }
 
     public int getRowCount30InCustomers(double resultPerPage) throws InterruptedException {
         double customerCount = getCustomerCount();
-        System.out.println("customerCount "+customerCount);
-        System.out.println("resultPerPage"+resultPerPage);
-        double pageCount =customerCount/resultPerPage;
+        System.out.println("customerCount " + customerCount);
+        System.out.println("resultPerPage" + resultPerPage);
+        double pageCount = customerCount / resultPerPage;
         System.out.println("pageCount" + pageCount);
-        int correctPageCount= (int) Math.ceil(pageCount);
-        System.out.println("correctPageCount "+correctPageCount);
+        int correctPageCount = (int) Math.ceil(pageCount);
+        System.out.println("correctPageCount " + correctPageCount);
         int tempCustomerCount = 0;
         int rowCount = 0;
         //   int rowCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
@@ -109,28 +123,28 @@ public void clickResultPerPageValue(int resultPerPage){
     }
 
 
-    public boolean isSpecificEmailAvailableInCustomersList(double resultPerPage,String customerEmail) throws InterruptedException {
+    public boolean isSpecificEmailAvailableInCustomersList(double resultPerPage, String customerEmail) throws InterruptedException {
 
         double customerCount = getCustomerCount();
-        System.out.println("customerCount "+ customerCount);
-        System.out.println("resultPerPage"+ resultPerPage);
-        double pageCount = customerCount/ resultPerPage;
+        System.out.println("customerCount " + customerCount);
+        System.out.println("resultPerPage" + resultPerPage);
+        double pageCount = customerCount / resultPerPage;
         System.out.println("pageCount" + pageCount);
-        int correctPageCount= (int) Math.ceil(pageCount);
-        System.out.println("correctPageCount "+ correctPageCount);
+        int correctPageCount = (int) Math.ceil(pageCount);
+        System.out.println("correctPageCount " + correctPageCount);
         int tempCustomerCount = 0;
         int rowCount = 0;
         boolean isEmailavailable = false;
         //   int rowCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
         for (int temp = 0; temp <= correctPageCount; temp++) {
             tempCustomerCount = driver.findElements(By.xpath(ElementsCustomers.lblCustomersEmail)).size();
-            System.out.println("tempCustomerCount "+tempCustomerCount);
+            System.out.println("tempCustomerCount " + tempCustomerCount);
 
-            for ( int x=0; x<tempCustomerCount; x++) {
-           String email = driver.findElements(By.xpath(ElementsCustomers.lblCustomersEmail)).get(x).getText();
-                System.out.println("email "+ email);
-                if(email.contains(customerEmail)){
-                    isEmailavailable =  true;
+            for (int x = 0; x < tempCustomerCount; x++) {
+                String email = driver.findElements(By.xpath(ElementsCustomers.lblCustomersEmail)).get(x).getText();
+                System.out.println("email " + email);
+                if (email.contains(customerEmail)) {
+                    isEmailavailable = true;
                     break;
                 }
 
@@ -147,29 +161,29 @@ public void clickResultPerPageValue(int resultPerPage){
     }
 
 
-    public void clickSpecificEmailActionInCustomersList(double resultPerPage,String customerEmail) throws InterruptedException {
+    public void clickSpecificEmailActionInCustomersList(double resultPerPage, String customerEmail) throws InterruptedException {
 
         double customerCount = getCustomerCount();
-        System.out.println("customerCount "+ customerCount);
-        System.out.println("resultPerPage"+ resultPerPage);
-        double pageCount = customerCount/ resultPerPage;
+        System.out.println("customerCount " + customerCount);
+        System.out.println("resultPerPage" + resultPerPage);
+        double pageCount = customerCount / resultPerPage;
         System.out.println("pageCount" + pageCount);
-        int correctPageCount= (int) Math.ceil(pageCount);
-        System.out.println("correctPageCount "+ correctPageCount);
+        int correctPageCount = (int) Math.ceil(pageCount);
+        System.out.println("correctPageCount " + correctPageCount);
         int tempCustomerCount = 0;
         int rowCount = 0;
         boolean isEmailavailable = false;
         //   int rowCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
         for (int temp = 0; temp <= correctPageCount; temp++) {
             tempCustomerCount = driver.findElements(By.xpath(ElementsCustomers.lblCustomersEmail)).size();
-            System.out.println("tempCustomerCount "+tempCustomerCount);
+            System.out.println("tempCustomerCount " + tempCustomerCount);
 
-            for ( int x=0; x<tempCustomerCount; x++) {
+            for (int x = 0; x < tempCustomerCount; x++) {
                 String email = driver.findElements(By.xpath(ElementsCustomers.lblCustomersEmail)).get(x).getText();
-                System.out.println("email "+ email);
-                if(email.contains(customerEmail)){
-                    isEmailavailable =  true;
-                    driver.findElement(By.xpath(ElementsCustomers.prebtnActionCustomer+x+1+ElementsCustomers.postbtnActionCustomer)).click();
+                System.out.println("email " + email);
+                if (email.contains(customerEmail)) {
+                    isEmailavailable = true;
+                    driver.findElement(By.xpath(ElementsCustomers.prebtnActionCustomer + x + 1 + ElementsCustomers.postbtnActionCustomer)).click();
                     break;
                 }
 
@@ -182,12 +196,48 @@ public void clickResultPerPageValue(int resultPerPage){
             System.out.println("rowCount  " + rowCount);
         }
         System.out.println("total row Count  " + rowCount);
-     //   return isEmailavailable;
+        //   return isEmailavailable;
     }
-public void clickViewEditPoints(){
+
+    public void clickViewEditPoints() {
         clickOnElement(btnViewEditPoints);
-}
-public String getViewEditPointsText(){
+    }
+
+    public String getViewEditPointsText() {
         return getElementText(lblViewEditPointsText);
+    }
+
+    public int getRowCount301InCustomers(double resultPerPage) throws InterruptedException {
+        double customerCount = getCustomerCount();
+        System.out.println("customerCount " + customerCount);
+        System.out.println("resultPerPage" + resultPerPage);
+        double pageCount = customerCount / resultPerPage;
+        System.out.println("pageCount" + pageCount);
+        int correctPageCount = (int) Math.ceil(pageCount);
+        System.out.println("correctPageCount " + correctPageCount);
+        int tempCustomerCount = 0;
+        int rowCount = 0;
+        //   int rowCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
+   //     String  values = driver.findElement(By.id("data-id")).getAttribute("value");
+        for (int temp = 0; temp < correctPageCount; temp++) {
+             rowCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
+         //String value= driver.findElement(By.xpath("//div[@class='MuiDataGrid-virtualScrollerRenderZone css-1inm7gi']/div["+(rowCount-1)+"]")).getAttribute("data-rowindex");
+        //    System.out.println("value   "+value);
+            tempCustomerCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
+            rowCount = rowCount + tempCustomerCount;
+            if (isElementEnabled(btnNextPageArrow) == true) {
+                for (int tempe=0; tempe<correctPageCount; tempe++){
+
+                }
+
+                clickOnElement(btnNextPageArrow);
+            }
+            scrollDown();
+            System.out.println("rowCount  " + rowCount);
+        }
+        System.out.println("total row Count  " + rowCount);
+        return rowCount;
+
+    }
 }
-}
+
