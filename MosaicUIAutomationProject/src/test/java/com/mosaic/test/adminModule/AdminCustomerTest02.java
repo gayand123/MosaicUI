@@ -10,15 +10,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-
-
-public class AdminCustomerTest extends TestBase {
+public class AdminCustomerTest02 extends TestBase {
     @BeforeClass
     public void loginAdminUser() throws InterruptedException {
         userLogin();
     }
 
-    @Test
+  /*  @Test
     public void verifyCustomerCountInViewCustomerList() throws InterruptedException {
         AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
         adminMenuPage.clickMenu();
@@ -28,7 +26,7 @@ public class AdminCustomerTest extends TestBase {
         Assert.assertEquals(adminCustomerPage.getCustomerText().contains("Customers"), true);
         Assert.assertEquals(adminCustomerPage.getRowCountInCustomers(DomainConstants.resultPerPage10),adminCustomerPage.getCustomerCount());
 
-       }
+    }
 
     @Test
     public void verifyResultPerPageInCustomerList() throws InterruptedException {
@@ -43,8 +41,10 @@ public class AdminCustomerTest extends TestBase {
         adminCustomerPage.clickResultPerPageValue(DomainConstants.resultPerPage30);
         Assert.assertEquals(adminCustomerPage.getRowCount301InCustomers(DomainConstants.resultPerPage30),adminCustomerPage.getCustomerCount());
     }
-/*
-    @Test(enabled = false)
+
+
+
+    @Test (priority = 1)
     public void verifyEmailInCustomerList() throws InterruptedException {
         AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
         adminMenuPage.clickMenu();
@@ -54,9 +54,9 @@ public class AdminCustomerTest extends TestBase {
         Assert.assertEquals(adminCustomerPage.getCustomerText().contains("Customers"), true);
         Assert.assertEquals(adminCustomerPage.isSpecificEmailAvailableInCustomersList(DomainConstants.resultPerPage10,"gayandunuwila+qa100@gmail.com"),true);
 
-    }
+    }    */
 
-    @Test
+    @Test (priority = 2)
     public void verifyEditCustomerInCustomerList() throws InterruptedException {
         AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
         adminMenuPage.clickMenu();
@@ -70,7 +70,7 @@ public class AdminCustomerTest extends TestBase {
         Assert.assertEquals(adminCustomerPage.getViewEditPointsText(),"Loyalty Points Summary");
        // Assert.assertEquals(adminCustomerPage.getCustomerCurrentPoints(),"18963");
 
-    } */
+    }
     @AfterClass
     public void closeBrowser(){
         driver.close();
