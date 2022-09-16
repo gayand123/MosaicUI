@@ -48,10 +48,11 @@ public class TestBase {
 
     @BeforeSuite
     public void beforeSuite() {
-        setupPreRequisites();
+       // setupPreRequisites();
     }
 
     public void userLogin() throws InterruptedException {
+        setupPreRequisites();
         driver.get(properties.getProperty("baseURL"));
         if (isElementPresent(By.xpath(ElementsMenu.btnSignIn))) {
             AdminLoginPage adminLoginPage = PageFactory.initElements(driver, AdminLoginPage.class);

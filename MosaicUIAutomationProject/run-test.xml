@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="MosaicTestSuite">
+    <test name="SanityTest">
+        <classes>
+            <class name="com.mosaic.test.adminModule.AdminCustomerTest"/>
+            <class name="com.mosaic.test.adminModule.AdminCustomerTest01"/>
+            <class name="com.mosaic.test.adminModule.AdminCustomerTest02"/>
+        </classes>
+    </test>
+
+    <!-- For reportng listners -->
+
+
+</suite>
