@@ -7,7 +7,7 @@ import com.mosaic.util.TestBase;
 import org.openqa.selenium.support.PageFactory;
 import org.python.modules._sre;
 import org.testng.Assert;
-import sun.security.mscapi.CPublicKey;
+
 
 public class CustomerLoyaltyView extends TestBase {
     Integer customerLoyaltyPoints;
