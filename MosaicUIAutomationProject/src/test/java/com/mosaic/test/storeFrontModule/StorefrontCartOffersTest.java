@@ -1,13 +1,8 @@
 package com.mosaic.test.storeFrontModule;
 
 import com.mosaic.pages.storeFrontModule.StorefrontCartOffersPage;
-import com.mosaic.pages.storeFrontModule.StorefrontRewardsPage;
 import com.mosaic.util.TestBase;
-import org.apache.log4j.lf5.viewer.configure.ConfigurationManager;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -26,5 +21,6 @@ public class StorefrontCartOffersTest extends TestBase {
         System.out.println("test");
 
     }
+
 
 }
