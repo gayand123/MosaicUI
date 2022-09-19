@@ -1,6 +1,7 @@
 package com.mosaic.util;
 
 import com.mosaic.pages.adminModule.AdminLoginPage;
+import com.mosaic.pages.storeFrontModule.StorefrontLoginPage;
 import com.mosaic.util.adminModule.ElementsMenu;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
@@ -48,7 +49,7 @@ public class TestBase {
 
     @BeforeSuite
     public void beforeSuite() {
-       // setupPreRequisites();
+        setupPreRequisites();
     }
 
     public void userLogin() throws InterruptedException {
@@ -66,7 +67,17 @@ public class TestBase {
             System.out.println("User is Already Loggin");
         }
     }
-
+    public void storeFrontUserLogin() throws InterruptedException{
+        driver.get(properties.getProperty("storeFrontBaseURL"));
+        StorefrontLoginPage storefrontLoginPage = PageFactory.initElements(driver, StorefrontLoginPage.class);
+        storefrontLoginPage.clickValidateAgeButton();
+        storefrontLoginPage.clickButtonSignIn();
+        Thread.sleep(2000);
+        storefrontLoginPage.enterUserName();
+        storefrontLoginPage.enterPassword();
+        storefrontLoginPage.clickButtonSignInStoreFront();
+        Thread.sleep(2000);
+    }
     public static void readPropertyFile() {
         try {
             properties = new Properties();
