@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
@@ -16,6 +17,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.interactions.Locatable;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -32,6 +34,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -49,11 +52,38 @@ public class TestBase {
 
     @BeforeSuite
     public void beforeSuite() {
-        setupPreRequisites();
+        setupPreRequisites(DomainConstants.browserMode);
+    }
+
+    public static void setupPreRequisites(String browserMode) {
+        readPropertyFile();
+        String browserName = properties.getProperty("browser");
+        switch (browserName) {
+            case "chrome":
+                System.setProperty("webdriver.chrome.driver", "src/configurations/drivers/chromedriver.exe");
+                ChromeOptions options = new ChromeOptions();
+                if (browserMode.contains("--incognito")) {
+                    options.addArguments("--incognito");
+                    options.addArguments("--disable-notifications");
+                    driver = new ChromeDriver(options);
+                }
+                if (!browserMode.contains("--incognito"))
+                    driver = new ChromeDriver();
+                break;
+
+            case "edge":
+                System.setProperty("webdriver.edge.driver", "src/configurations/drivers/msedgedriver.exe");
+                driver = new EdgeDriver();
+                break;
+        }
+
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
+
     }
 
     public void userLogin() throws InterruptedException {
-        setupPreRequisites();
+        //   setupPreRequisites(browserMode);
         driver.get(properties.getProperty("baseURL"));
         if (isElementPresent(By.xpath(ElementsMenu.btnSignIn))) {
             AdminLoginPage adminLoginPage = PageFactory.initElements(driver, AdminLoginPage.class);
@@ -67,7 +97,8 @@ public class TestBase {
             System.out.println("User is Already Loggin");
         }
     }
-    public void storeFrontUserLogin() throws InterruptedException{
+
+    public void storeFrontUserLogin() throws InterruptedException {
         driver.get(properties.getProperty("storeFrontBaseURL"));
         StorefrontLoginPage storefrontLoginPage = PageFactory.initElements(driver, StorefrontLoginPage.class);
         storefrontLoginPage.clickValidateAgeButton();
@@ -78,6 +109,7 @@ public class TestBase {
         storefrontLoginPage.clickButtonSignInStoreFront();
         Thread.sleep(2000);
     }
+
     public static void readPropertyFile() {
         try {
             properties = new Properties();
@@ -90,25 +122,6 @@ public class TestBase {
         }
     }
 
-    public static void setupPreRequisites() {
-        readPropertyFile();
-        String browserName = properties.getProperty("browser");
-
-        switch (browserName) {
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/configurations/drivers/chromedriver.exe");
-                driver = new ChromeDriver();
-                break;
-
-            case "edge":
-                System.setProperty("webdriver.edge.driver", "src/configurations/drivers/msedgedriver.exe");
-                driver = new EdgeDriver();
-                break;
-        }
-
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-    }
 
     public static void setupPreRequisitesWithBrowserList(String browser) {
         // readPropertyFile();
@@ -138,7 +151,7 @@ public class TestBase {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         // } else
-         // testBaseLogger.info("Unable to proceed without specific browser name in Config.properties file");
+        // testBaseLogger.info("Unable to proceed without specific browser name in Config.properties file");
 
     }
 
@@ -151,69 +164,69 @@ public class TestBase {
         if (!inputValue.isEmpty()) {
             element.click();
             element.clear();
-           // testBaseLogger.info("\nTyping on element " + element + " value: " + inputValue + "");
+            // testBaseLogger.info("\nTyping on element " + element + " value: " + inputValue + "");
             element.sendKeys(inputValue);
-          //  testBaseLogger.info("Typing successful");
+            //  testBaseLogger.info("Typing successful");
         } else {
-           // testBaseLogger.info("No input value specified for " + element + "");
+            // testBaseLogger.info("No input value specified for " + element + "");
         }
     }
 
     public static void typeOnElementWithEnter(WebElement element, String inputValue) {
         if (!inputValue.isEmpty()) {
             element.clear();
-         //   testBaseLogger.info("\nTyping on element:  " + element + " value: " + inputValue);
+            //   testBaseLogger.info("\nTyping on element:  " + element + " value: " + inputValue);
             element.sendKeys(inputValue);
             element.sendKeys(Keys.RETURN);
-          //  testBaseLogger.info("Typing successful");
+            //  testBaseLogger.info("Typing successful");
         } else {
-         //   testBaseLogger.info("No value specified for " + element);
+            //   testBaseLogger.info("No value specified for " + element);
         }
     }
 
     public static void clickOnElement(WebElement element) {
-     //   testBaseLogger.info("Clicking on element " + element + "");
+        //   testBaseLogger.info("Clicking on element " + element + "");
         element.click();
-     //   testBaseLogger.info("Clicking successful");
+        //   testBaseLogger.info("Clicking successful");
     }
 
     public static String getElementText(WebElement element) {
-    //    testBaseLogger.info("Retrieving the element text of " + element + "");
+        //    testBaseLogger.info("Retrieving the element text of " + element + "");
         String elementText = element.getText();
         if (!elementText.isEmpty()) {
-     //       testBaseLogger.info("Retrieving text successful");
+            //       testBaseLogger.info("Retrieving text successful");
         } else {
-     //       testBaseLogger.info("No text found on specific element " + element + "");
+            //       testBaseLogger.info("No text found on specific element " + element + "");
         }
         return elementText;
     }
 
     public static void selectValueFromAutoSuggestionListInTextField(WebElement element, String txt) {
         element.clear();
-      //  testBaseLogger.info("\nTyping on element:  " + element + " value: " + txt);
+        //  testBaseLogger.info("\nTyping on element:  " + element + " value: " + txt);
         element.sendKeys(txt);
         element.sendKeys(Keys.ARROW_DOWN + "" + Keys.ENTER);
-     //   testBaseLogger.info("Item was successfully selected from the Auto suggestion list");
+        //   testBaseLogger.info("Item was successfully selected from the Auto suggestion list");
 
     }
 
 
     public static String getElementTextBy(By by) {
-      //  testBaseLogger.info("Retrieving the element text of " + driver.findElement(by) + "");
+        //  testBaseLogger.info("Retrieving the element text of " + driver.findElement(by) + "");
         String elementText = driver.findElement(by).getText();
         if (!elementText.isEmpty()) {
-         //   testBaseLogger.info("Retrieving text successful");
+            //   testBaseLogger.info("Retrieving text successful");
         } else {
-       //     testBaseLogger.info("No text found on specific element " + driver.findElement(by) + "");
+            //     testBaseLogger.info("No text found on specific element " + driver.findElement(by) + "");
         }
         return elementText;
     }
 
     public void selectDropDownByText(WebElement element, String text) {
-    //   testBaseLogger.info("Selecting value from dropdown");
+        //   testBaseLogger.info("Selecting value from dropdown");
         Select select = new Select(element);
         select.selectByVisibleText(text);
-      //  testBaseLogger.info("successfully selected from dropdown");
+        //  testBaseLogger.info("successfully selected from dropdown");
     }
 
     public void selectDropDownByIndex(WebElement element, int index) {
@@ -281,11 +294,11 @@ public class TestBase {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Long.valueOf(timeout)));
             wait.until(ExpectedConditions.elementToBeClickable(element));
         } catch (ElementClickInterceptedException e) {
-        //    testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
+            //    testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
         } catch (NoSuchElementException e) {
-        //    testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
+            //    testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
         } catch (TimeoutException e) {
-        //    testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
+            //    testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
         }
     }
 
@@ -295,9 +308,9 @@ public class TestBase {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Long.valueOf(timeout)));
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (NoSuchElementException e) {
-          //  testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
+            //  testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
         } catch (TimeoutException e) {
-         //   testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
+            //   testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
         }
     }
 
@@ -307,9 +320,9 @@ public class TestBase {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Long.valueOf(timeout)));
             wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
         } catch (ElementNotInteractableException e) {
-          //  testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
+            //  testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
         } catch (TimeoutException e) {
-         //   testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
+            //   testBaseLogger.info("Failed. Due to : " + e.getLocalizedMessage() + "");
         }
     }
 
@@ -336,26 +349,26 @@ public class TestBase {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-          //  testBaseLogger.info("Unable to locate file");
+            //  testBaseLogger.info("Unable to locate file");
         } catch (IOException e) {
             e.printStackTrace();
-           // testBaseLogger.info("Unable to read file");
+            // testBaseLogger.info("Unable to read file");
         } catch (BiffException e) {
             e.printStackTrace();
-         //   testBaseLogger.info("Unable to read the excel file");
+            //   testBaseLogger.info("Unable to read the excel file");
         }
         return excelDataList;
     }
 
     public static boolean isElementEnabled(WebElement element) {
         boolean isEnabled = true;
-      // testBaseLogger.info("Element Located " + element + "");
+        // testBaseLogger.info("Element Located " + element + "");
         if (element.isEnabled()) {
             isEnabled = true;
-       //    testBaseLogger.info("Element is enabled");
+            //    testBaseLogger.info("Element is enabled");
         } else {
             isEnabled = false;
-      //      testBaseLogger.info("Element is disabled");
+            //      testBaseLogger.info("Element is disabled");
         }
         return isEnabled;
     }
@@ -443,15 +456,15 @@ public class TestBase {
     }
 
     public static void scrollUntilElementView(WebElement element) {
-     //   testBaseLogger.info("\n Scroll until visibility of element : " + element + "");
+        //   testBaseLogger.info("\n Scroll until visibility of element : " + element + "");
         Coordinates coordinate = ((Locatable) element).getCoordinates();
         coordinate.onPage();
         coordinate.inViewPort();
-      //  testBaseLogger.info("Successfully scrolled");
+        //  testBaseLogger.info("Successfully scrolled");
     }
 
     public static void scrollUntilElementViewJS(WebElement element) {
-      //  testBaseLogger.info("\n Scroll until visibility of element : " + element + "");
+        //  testBaseLogger.info("\n Scroll until visibility of element : " + element + "");
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
         //testBaseLogger.info("Successfully scrolled");
@@ -461,11 +474,11 @@ public class TestBase {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Long.valueOf(timeout)));
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css)));
-        //    testBaseLogger.info("Element located at path --> " + css + " and waiting for " + timeout + " seconds");
+            //    testBaseLogger.info("Element located at path --> " + css + " and waiting for " + timeout + " seconds");
         } catch (NoSuchElementException e) {
-      //      testBaseLogger.info("Failed Due to : " + e.getLocalizedMessage() + "");
+            //      testBaseLogger.info("Failed Due to : " + e.getLocalizedMessage() + "");
         } catch (TimeoutException e) {
-      //      testBaseLogger.info("Failed Due to : " + e.getLocalizedMessage() + "");
+            //      testBaseLogger.info("Failed Due to : " + e.getLocalizedMessage() + "");
         }
     }
 
@@ -473,11 +486,11 @@ public class TestBase {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Long.valueOf(timeout)));
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-         //   testBaseLogger.info("Element located at xpath --> " + xpath + " and waiting for " + timeout + " seconds");
+            //   testBaseLogger.info("Element located at xpath --> " + xpath + " and waiting for " + timeout + " seconds");
         } catch (NoSuchElementException e) {
-        //    testBaseLogger.info("Failed Due to : " + e.getLocalizedMessage() + "");
+            //    testBaseLogger.info("Failed Due to : " + e.getLocalizedMessage() + "");
         } catch (TimeoutException e) {
-       //     testBaseLogger.info("Failed Due to : " + e.getLocalizedMessage() + "");
+            //     testBaseLogger.info("Failed Due to : " + e.getLocalizedMessage() + "");
         }
     }
 
@@ -485,7 +498,7 @@ public class TestBase {
         String initialWindow = driver.getWindowHandle();
         for (String newWindow : driver.getWindowHandles()) {
             if (!initialWindow.equalsIgnoreCase(newWindow)) {
-         //       testBaseLogger.info("Switch to new Window : " + newWindow);
+                //       testBaseLogger.info("Switch to new Window : " + newWindow);
                 driver.switchTo().window(newWindow);
                 break;
             }
@@ -507,9 +520,9 @@ public class TestBase {
             TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
             File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
             FileHandler.copy(source, new File("src/main/resources/screenshots/" + screenshotName + ".png"));
-         //   testBaseLogger.info("Screenshot successfully taken");
+            //   testBaseLogger.info("Screenshot successfully taken");
         } catch (Exception e) {
-          //  testBaseLogger.info("Failed Screenshot taking due to : " + e.getLocalizedMessage() + "");
+            //  testBaseLogger.info("Failed Screenshot taking due to : " + e.getLocalizedMessage() + "");
         }
     }
 
