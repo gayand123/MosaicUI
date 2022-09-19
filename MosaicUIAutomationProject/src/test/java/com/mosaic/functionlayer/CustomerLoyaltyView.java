@@ -22,7 +22,6 @@ public class CustomerLoyaltyView extends TestBase {
         adminCustomerPage.clickSpecificEmailActionInCustomersList(DomainConstants.resultPerPage10, DomainConstants.userEmail);
         Thread.sleep(2000);
         adminCustomerPage.clickViewEditPoints();
-     //   Assert.assertEquals(adminCustomerPage.getViewEditPointsText(), "Loyalty Points Summary");
-        return customerLoyaltyPoints = Integer.valueOf(adminCustomerPage.getCustomerCurrentPoints());
+         return customerLoyaltyPoints = Integer.valueOf(adminCustomerPage.getCustomerCurrentPoints());
     }
 }
