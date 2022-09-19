@@ -2,6 +2,7 @@ package com.mosaic.test.adminModule;
 
 import com.mosaic.pages.adminModule.AdminLoyaltyPage;
 import com.mosaic.pages.adminModule.AdminMenuPage;
+import com.mosaic.util.DomainConstants;
 import com.mosaic.util.TestBase;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;

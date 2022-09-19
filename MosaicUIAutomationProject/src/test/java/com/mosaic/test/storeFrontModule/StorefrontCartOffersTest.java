@@ -20,6 +20,7 @@ public class StorefrontCartOffersTest extends TestBase {
 
     @Test
     public void checkOfferCount() throws InterruptedException {
+
         StorefrontCartOffersPage storefrontCartOffersPage = PageFactory.initElements(driver, StorefrontCartOffersPage.class);
         storefrontCartOffersPage.clickBtnOrderNow();
     }
