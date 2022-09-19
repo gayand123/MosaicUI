@@ -3,6 +3,7 @@ package com.mosaic.test.adminModule;
 import com.mosaic.pages.adminModule.AdminCustomerPage;
 import com.mosaic.pages.adminModule.AdminMenuPage;
 import com.mosaic.util.DomainConstants;
+import com.mosaic.util.RetryAnalyzer;
 import com.mosaic.util.TestBase;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -44,7 +45,7 @@ public class AdminCustomerTest01 extends TestBase {
 
    */
 
-    @Test (priority = 1)
+    @Test (priority = 1,retryAnalyzer= RetryAnalyzer.class)
     public void verifyEmailInCustomerList() throws InterruptedException {
         AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
         adminMenuPage.clickMenu();

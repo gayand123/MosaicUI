@@ -11,4 +11,6 @@ public class DomainConstants {
     public static final int resultPerPage30 = 30;
     public static final int resultPerPage100 = 100;
     public static final String userEmail ="hansini123aeturnum+600@gmail.com";
+    public static final int minRetryCount=0;
+    public static final int maxReTryCount=3;
 }
