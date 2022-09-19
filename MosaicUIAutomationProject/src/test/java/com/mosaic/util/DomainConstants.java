@@ -11,5 +11,5 @@ public class DomainConstants {
     public static final int resultPerPage30 = 30;
     public static final int resultPerPage100 = 100;
     public static final String userEmail ="hansini123aeturnum+600@gmail.com";
-    public static final String browserMode = "--incognito";  // for incognito browser mode = "--incognito" , for normal browser mode  = null;
+    public static final String browserMode = "normal";  // for incognito browser mode = "--incognito" , for normal browser mode  = "normal";
 }

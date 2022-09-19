@@ -64,6 +64,7 @@ public class TestBase {
                 ChromeOptions options = new ChromeOptions();
                 if (browserMode.contains("--incognito")) {
                     options.addArguments("--incognito");
+                    options.addArguments("--disable-notifications");
                     driver = new ChromeDriver(options);
                 }
                 if (!browserMode.contains("--incognito"))
