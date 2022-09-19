@@ -12,7 +12,6 @@ import sun.security.mscapi.CPublicKey;
 public class CustomerLoyaltyView extends TestBase {
     Integer customerLoyaltyPoints;
     public int getCustomerLoyaltyPoints() throws InterruptedException {
-
         AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
         adminMenuPage.clickMenu();
         adminMenuPage.clickbtnCustomers();

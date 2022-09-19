@@ -202,7 +202,7 @@ public class AdminCustomerPage extends TestBase {
 
                 if (email.contains(customerEmail)) {
                     isEmailavailable = true;
-                    driver.findElement(By.xpath(ElementsCustomers.prebtnActionCustomer + DomainConstants.userEmail + ElementsCustomers.postbtnActionCustomer)).click();
+                    driver.findElement(By.xpath(ElementsCustomers.prebtnActionCustomer + customerEmail + ElementsCustomers.postbtnActionCustomer)).click();
                     System.out.println("I am in there");
                     userEmail =email;
                     System.out.println("email ="+userEmail);
