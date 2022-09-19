@@ -11,8 +11,8 @@ import sun.security.mscapi.CPublicKey;
 
 public class CustomerLoyaltyView extends TestBase {
     Integer customerLoyaltyPoints;
-    public int getCustomerLoyaltyPoints() throws InterruptedException {
 
+    public int getCustomerLoyaltyPoints() throws InterruptedException {
         AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
         adminMenuPage.clickMenu();
         adminMenuPage.clickbtnCustomers();
@@ -22,6 +22,8 @@ public class CustomerLoyaltyView extends TestBase {
         adminCustomerPage.clickSpecificEmailActionInCustomersList(DomainConstants.resultPerPage10, DomainConstants.userEmail);
         Thread.sleep(2000);
         adminCustomerPage.clickViewEditPoints();
-         return customerLoyaltyPoints = Integer.valueOf(adminCustomerPage.getCustomerCurrentPoints());
+        customerLoyaltyPoints = Integer.valueOf(adminCustomerPage.getCustomerCurrentPoints());
+        driver.close();
+        return customerLoyaltyPoints;
     }
 }
