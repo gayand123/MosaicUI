@@ -4,9 +4,15 @@ import com.mosaic.pages.adminModule.AdminLoginPage;
 import com.mosaic.util.TestBase;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class AdminLoginTest extends TestBase {
+    @BeforeClass
+    public void loginAdminUser() throws InterruptedException {
+        setupPreRequisites();
+    }
     @Test
     public void loginWithValidCredentials() throws InterruptedException {
         driver.get(properties.getProperty("baseURL"));
@@ -21,7 +27,10 @@ public class AdminLoginTest extends TestBase {
     }
 
 
-
+    @AfterClass
+    public void closeBrowser(){
+        driver.close();
+    }
 
 
 

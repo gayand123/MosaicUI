@@ -42,6 +42,11 @@ public class AdminMenuPage extends TestBase {
       return   getElementText(btnCreateOffer);
     }
     public void clickbtnLoyalty(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         waitUntilVisibilityOfElement(By.xpath(ElementsMenu.btnLoyalty));
         clickOnElement(btnLoyalty);
     }

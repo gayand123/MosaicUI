@@ -5,6 +5,7 @@ import com.mosaic.pages.adminModule.AdminMenuPage;
 import com.mosaic.util.TestBase;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -22,5 +23,9 @@ public class AdminMenuTest extends TestBase {
         adminMenuPage.getTextBtnOffer();
         Assert.assertEquals( adminMenuPage.getTextBtnOffer(),"Create Offer");
 
+    }
+    @AfterClass
+    public void closeBrowser(){
+        driver.close();
     }
 }

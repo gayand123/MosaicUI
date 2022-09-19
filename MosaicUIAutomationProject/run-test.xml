@@ -6,6 +6,11 @@
             <class name="com.mosaic.test.adminModule.AdminCustomerTest"/>
             <class name="com.mosaic.test.adminModule.AdminCustomerTest01"/>
             <class name="com.mosaic.test.adminModule.AdminCustomerTest02"/>
+            <class name="com.mosaic.test.adminModule.AdminCustomerTest03"/>
+            <class name="com.mosaic.test.adminModule.AdminLoginTest"/>
+            <class name="com.mosaic.test.adminModule.AdminLoyaltyTest"/>
+            <class name="com.mosaic.test.adminModule.AdminMenuTest"/>
+
         </classes>
     </test>
 
