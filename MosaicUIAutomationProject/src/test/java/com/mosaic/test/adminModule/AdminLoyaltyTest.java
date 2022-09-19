@@ -28,7 +28,7 @@ public class AdminLoyaltyTest  extends TestBase {
         Assert.assertEquals(adminLoyaltyPage.isValueOfRedeemPointsAvailableAndClickable(),false);
         Assert.assertEquals(adminLoyaltyPage.isValueOfRedeemDiscountPercentageAvailableAndClickable(),false);
         Assert.assertEquals(adminLoyaltyPage.isValueOfRedeemDiscountAvailableAndClickable(),false);
-        System.out.println("I am out");
+
     }
 
     @Test(priority = 2,retryAnalyzer= RetryAnalyzer.class)
