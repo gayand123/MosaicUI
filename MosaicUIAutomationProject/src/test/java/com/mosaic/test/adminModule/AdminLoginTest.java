@@ -9,10 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class AdminLoginTest extends TestBase {
-    @BeforeClass
-    public void loginAdminUser() throws InterruptedException {
-        setupPreRequisites();
-    }
+
     @Test
     public void loginWithValidCredentials() throws InterruptedException {
         driver.get(properties.getProperty("baseURL"));
