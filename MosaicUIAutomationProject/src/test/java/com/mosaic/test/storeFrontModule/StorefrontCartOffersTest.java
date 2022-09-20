@@ -4,6 +4,7 @@ import com.mosaic.pages.storeFrontModule.StorefrontCartOffersPage;
 import com.mosaic.util.TestBase;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -48,6 +49,9 @@ public class StorefrontCartOffersTest extends TestBase {
         Thread.sleep(2000);
         storefrontCartOffersPage.clickDoPayLater();
     }
-
+    @AfterClass
+    public void closeBrowser(){
+        driver.close();
+    }
 
 }
