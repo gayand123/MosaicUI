@@ -19,12 +19,38 @@ public class StorefrontCartOffersTest extends TestBase {
     }
 
     @Test
-    public void checkOfferCount() throws InterruptedException {
+    public void applyOffers() throws InterruptedException {
 
         StorefrontCartOffersPage storefrontCartOffersPage = PageFactory.initElements(driver, StorefrontCartOffersPage.class);
         storefrontCartOffersPage.clickBtnOrderNow();
-        System.out.println("test");
-
+        Thread.sleep(4000);
+        storefrontCartOffersPage.clickBtnSecondOrderNow();
+        Thread.sleep(5000);
+        storefrontCartOffersPage.clickAddProduct();
+        Thread.sleep(3000);
+        storefrontCartOffersPage.clickAddToCart();
+        Thread.sleep(2000);
+        storefrontCartOffersPage.clickProceedToCheckout();
+        Thread.sleep(3500);
+        storefrontCartOffersPage.getQualifyOfferCount();
+        storefrontCartOffersPage.clickArrowIcon();
+        Thread.sleep(4000);
+        storefrontCartOffersPage.getApplyOfferCount();
+        Assert.assertEquals(storefrontCartOffersPage.getQualifyOfferCount(),storefrontCartOffersPage.getApplyOfferCount());
+        Thread.sleep(4000);
+        Assert.assertEquals(storefrontCartOffersPage.getOfferName("Tier 01"),true);
+        Thread.sleep(2000);
+        storefrontCartOffersPage.selectOffer();
+        storefrontCartOffersPage.getDiscountValueByRemovePercentage();
+        storefrontCartOffersPage.clickApplyOffer();
+        Thread.sleep(5000);
+        Assert.assertEquals(storefrontCartOffersPage.getSystemAppliedDiscount(),storefrontCartOffersPage.getCalculatedDiscount());
+        Thread.sleep(2000);
+        storefrontCartOffersPage.clickCheckOutButton();
+        Thread.sleep(10000);
+        storefrontCartOffersPage.clickPayLater();
+        Thread.sleep(2000);
+        storefrontCartOffersPage.clickDoPayLater();
     }
 
 }
