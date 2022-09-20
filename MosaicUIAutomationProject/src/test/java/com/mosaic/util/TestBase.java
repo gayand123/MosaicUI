@@ -52,7 +52,7 @@ public class TestBase {
 
     @BeforeSuite
     public void beforeSuite() {
-        setupPreRequisites(DomainConstants.browserMode);
+       // setupPreRequisites(DomainConstants.browserMode);
     }
 
     public static void setupPreRequisites(String browserMode) {
@@ -83,7 +83,7 @@ public class TestBase {
     }
 
     public void userLogin() throws InterruptedException {
-        //   setupPreRequisites(browserMode);
+           setupPreRequisites(DomainConstants.browserMode);
         driver.get(properties.getProperty("baseURL"));
         if (isElementPresent(By.xpath(ElementsMenu.btnSignIn))) {
             AdminLoginPage adminLoginPage = PageFactory.initElements(driver, AdminLoginPage.class);

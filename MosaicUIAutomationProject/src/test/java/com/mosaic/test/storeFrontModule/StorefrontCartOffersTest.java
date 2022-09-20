@@ -1,6 +1,7 @@
 package com.mosaic.test.storeFrontModule;
 
 import com.mosaic.pages.storeFrontModule.StorefrontCartOffersPage;
+import com.mosaic.util.DomainConstants;
 import com.mosaic.util.TestBase;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -12,6 +13,7 @@ public class StorefrontCartOffersTest extends TestBase {
 
     @BeforeClass
     public void storefrontUserLogin() throws InterruptedException {
+        setupPreRequisites(DomainConstants.browserMode);
         storeFrontUserLogin();
     }
 
@@ -30,6 +32,7 @@ public class StorefrontCartOffersTest extends TestBase {
         storefrontCartOffersPage.clickProceedToCheckout();
         Thread.sleep(3500);
         storefrontCartOffersPage.getQualifyOfferCount();
+        Thread.sleep(3500);
         storefrontCartOffersPage.clickArrowIcon();
         Thread.sleep(4000);
         storefrontCartOffersPage.getApplyOfferCount();
@@ -51,7 +54,7 @@ public class StorefrontCartOffersTest extends TestBase {
     }
     @AfterClass
     public void closeBrowser(){
-        driver.close();
+        //driver.close();
     }
 
 }

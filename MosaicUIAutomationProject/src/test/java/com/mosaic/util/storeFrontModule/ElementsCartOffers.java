@@ -13,7 +13,7 @@ public class ElementsCartOffers {
 
     public static final String txtQualifyOfferCount = "//span[@class='css-11tluc']";
 
-    public static final String txtClickArrowIcon = "//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-1 css-19m3wz0']";
+    public static final String txtClickArrowIcon = "/html/body/div[2]/div[3]/div[2]/div[4]/div/div[3]/svg/path";
 
     public static final String listApplyOffers = "//div[@class='MuiGrid-root MuiGrid-container css-1mgrb1l']";
 

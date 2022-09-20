@@ -14,7 +14,7 @@ public class StorefrontRewardsTest extends TestBase {
     Integer customerPoints;
     @BeforeClass
     public void storefrontUserLogin() throws InterruptedException {
-  storeFrontUserLogin();
+    storeFrontUserLogin();
     }
 
   /*  @Test()
