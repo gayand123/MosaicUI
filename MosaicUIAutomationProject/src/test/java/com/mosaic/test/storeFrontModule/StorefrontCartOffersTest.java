@@ -3,6 +3,7 @@ package com.mosaic.test.storeFrontModule;
 import com.mosaic.pages.storeFrontModule.StorefrontCartOffersPage;
 import com.mosaic.util.TestBase;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
