@@ -24,7 +24,7 @@ public class StorefrontCartOffersTest extends TestBase {
         Thread.sleep(5000);
         storefrontCartOffersPage.clickBtnSecondOrderNow();
         Thread.sleep(5000);
-        storefrontCartOffersPage.clickAddProduct();
+        storefrontCartOffersPage.clickAddProduct("A HIGH PILL");
         Thread.sleep(3000);
         storefrontCartOffersPage.clickAddToCart();
         Thread.sleep(2000);

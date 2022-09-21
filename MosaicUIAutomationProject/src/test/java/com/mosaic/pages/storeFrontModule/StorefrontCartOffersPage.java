@@ -11,6 +11,9 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mosaic.util.storeFrontModule.ElementsCartOffers.postbtnAddProduct;
+import static com.mosaic.util.storeFrontModule.ElementsCartOffers.prebtnAddProduct;
+
 public class StorefrontCartOffersPage extends TestBase {
 
     @FindBy(xpath = ElementsCartOffers.btnOrderNow)
@@ -19,8 +22,8 @@ public class StorefrontCartOffersPage extends TestBase {
     @FindBy(xpath = ElementsCartOffers.btnSecondOrderNow)
     private WebElement btnSecondOrderNow;
 
-    @FindBy(xpath = ElementsCartOffers.btnAddProduct)
-    private WebElement btnAddProduct;
+   // @FindBy(xpath = ElementsCartOffers.btnAddProduct)
+   // private WebElement btnAddProduct;
 
     @FindBy(xpath = ElementsCartOffers.btnAddToCart)
     private WebElement btnAddToCart;
@@ -77,8 +80,9 @@ public class StorefrontCartOffersPage extends TestBase {
         Thread.sleep(1000);
     }
 
-    public void clickAddProduct() throws InterruptedException{
-        clickOnElement(btnAddProduct);
+    public void clickAddProduct(String productName) throws InterruptedException{
+
+        clickOnElement( driver.findElement(By.xpath(prebtnAddProduct+productName+postbtnAddProduct)));
         Thread.sleep(2000);
 //        scrollDown();
     }
