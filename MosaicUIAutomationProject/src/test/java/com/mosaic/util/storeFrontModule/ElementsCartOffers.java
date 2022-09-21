@@ -27,7 +27,7 @@ public class ElementsCartOffers {
 
     public static final String lblDiscountValue = "//h6[@class='MuiTypography-root MuiTypography-subtitle2 css-5ilzg3']";
 
-    public static final String lblSubTotal = "/html/body/div[3]/div[3]/div[2]/div[7]/div[2]/p[2]";
+    public static final String lblSubTotal = "//*[text()='Sub Total']/following::p[1]";
 
     public static final String lblAppliedDiscount = "//p[@class='MuiTypography-root MuiTypography-body1 css-1wrw353']";
 

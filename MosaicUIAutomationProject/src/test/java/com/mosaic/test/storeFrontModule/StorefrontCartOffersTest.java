@@ -20,10 +20,9 @@ public class StorefrontCartOffersTest extends TestBase {
 
     @Test
     public void applyOffers() throws InterruptedException {
-
         StorefrontCartOffersPage storefrontCartOffersPage = PageFactory.initElements(driver, StorefrontCartOffersPage.class);
         storefrontCartOffersPage.clickBtnOrderNow();
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         storefrontCartOffersPage.clickBtnSecondOrderNow();
         Thread.sleep(5000);
         storefrontCartOffersPage.clickAddProduct();
@@ -31,7 +30,7 @@ public class StorefrontCartOffersTest extends TestBase {
         storefrontCartOffersPage.clickAddToCart();
         Thread.sleep(2000);
         storefrontCartOffersPage.clickProceedToCheckout();
-        Thread.sleep(3500);
+        Thread.sleep(4000);
         storefrontCartOffersPage.getQualifyOfferCount();
         storefrontCartOffersPage.clickArrowIcon();
         Thread.sleep(4000);
