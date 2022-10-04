@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class AdminCustomerTest02 extends TestBase {
+    Integer customerLoyaltyPoints;
     @BeforeClass
     public void loginAdminUser() throws InterruptedException {
         userLogin();
@@ -56,7 +57,7 @@ public class AdminCustomerTest02 extends TestBase {
 
     }    */
 
-    @Test (priority = 2)
+    @Test (priority = 2,groups={"AdminCustomerTest02.verifyEditCustomerInCustomerList"})
     public void verifyEditCustomerInCustomerList() throws InterruptedException {
         AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
         adminMenuPage.clickMenu();
@@ -68,6 +69,7 @@ public class AdminCustomerTest02 extends TestBase {
         Thread.sleep(2000);
         adminCustomerPage.clickViewEditPoints();
         Assert.assertEquals(adminCustomerPage.getViewEditPointsText(),"Loyalty Points Summary");
+        customerLoyaltyPoints = Integer.valueOf(adminCustomerPage.getCustomerCurrentPoints());
        // Assert.assertEquals(adminCustomerPage.getCustomerCurrentPoints(),"18963");
 
     }

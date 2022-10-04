@@ -1,14 +1,11 @@
 package com.mosaic.test.storeFrontModule;
 
 import com.mosaic.pages.storeFrontModule.StorefrontCartOffersPage;
-import com.mosaic.pages.storeFrontModule.StorefrontRewardsPage;
 import com.mosaic.util.DomainConstants;
 import com.mosaic.util.TestBase;
-import org.apache.log4j.lf5.viewer.configure.ConfigurationManager;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -16,6 +13,7 @@ public class StorefrontCartOffersTest extends TestBase {
 
     @BeforeClass
     public void storefrontUserLogin() throws InterruptedException {
+        setupPreRequisites(DomainConstants.browserMode);
         storeFrontUserLogin();
     }
 
@@ -47,6 +45,10 @@ public class StorefrontCartOffersTest extends TestBase {
         storefrontCartOffersPage.clickPayLater();
         Thread.sleep(2000);
         storefrontCartOffersPage.clickDoPayLater();
+    }
+    @AfterClass
+    public void closeBrowser(){
+        //driver.close();
     }
 
 }

@@ -10,7 +10,11 @@
             <class name="com.mosaic.test.adminModule.AdminLoginTest"/>
             <class name="com.mosaic.test.adminModule.AdminLoyaltyTest"/>
             <class name="com.mosaic.test.adminModule.AdminMenuTest"/>
-
+            <class name="com.mosaic.test.adminModule.AdminOfferTest"/>
+            <class name="com.mosaic.test.storeFrontModule.StorefrontCartOffersTest"/>
+            <class name="com.mosaic.test.storeFrontModule.StorefrontLoginTest"/>
+            <class name="com.mosaic.test.storeFrontModule.StorefrontRewardsTest"/>
+            <class name="com.mosaic.test.storeFrontModule.StorefrontRewardsTest01"/>
         </classes>
     </test>
 

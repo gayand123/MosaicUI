@@ -198,8 +198,8 @@ public class AdminCustomerPage extends TestBase {
 
             for (int x = 0; x < tempCustomerCount; x++) {
                 String email = driver.findElements(By.xpath(ElementsCustomers.lblCustomersEmail)).get(x).getText();
-                System.out.println("email " + email);
-
+                System.out.println("email cus    ===  " + email);
+                userEmail =email;
                 if (email.contains(customerEmail)) {
                     isEmailavailable = true;
                     driver.findElement(By.xpath(ElementsCustomers.prebtnActionCustomer + customerEmail + ElementsCustomers.postbtnActionCustomer)).click();
@@ -214,6 +214,7 @@ public class AdminCustomerPage extends TestBase {
 
             }
             rowCount = rowCount + tempCustomerCount;
+            System.out.println("userEmail  === "+userEmail);
             if (!userEmail.contains(customerEmail)&&isElementEnabled(btnNextPageArrow) == true) {
                 System.out.println("I am in here");
                 clickOnElement(btnNextPageArrow);

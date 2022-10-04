@@ -5,7 +5,8 @@ public class ElementsCartOffers {
 
     public static final String btnSecondOrderNow = "//button[@class='MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root  css-9pj41r']";
 
-//    public static final String btnAddProduct = "//img[@class='MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-1u75skl']";
+    public static final String prebtnAddProduct = "//img[contains(@alt,'";
+    public static final String postbtnAddProduct ="')]";
 
     public static final String btnAddProduct ="//h3[@class='MuiTypography-root MuiTypography-body1 jss86 css-151odqb']";
 
