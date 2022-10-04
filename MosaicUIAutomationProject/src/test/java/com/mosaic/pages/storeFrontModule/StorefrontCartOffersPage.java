@@ -70,6 +70,16 @@ public class StorefrontCartOffersPage extends TestBase {
     @FindBy(xpath = ElementsCartOffers.btnDoPayLater)
     private WebElement btnDoPayLater;
 
+    @FindBy(xpath = ElementsCartOffers.listAllProducts)
+    private WebElement listAllProducts;
+
+    @FindBy(xpath = ElementsCartOffers.lblExceedQuantity)
+    private WebElement lblExceedQuantity;
+
+    @FindBy(xpath = ElementsCartOffers.btnBack)
+    private WebElement btnBack;
+
+
     public void clickBtnOrderNow() {
 
         clickOnElement(btnOrderNow);
@@ -80,16 +90,10 @@ public class StorefrontCartOffersPage extends TestBase {
         Thread.sleep(1000);
     }
 
-    public void clickAddProduct(String productName) throws InterruptedException{
 
+    public void clickAddProduct(String productName) throws InterruptedException{
         clickOnElement( driver.findElement(By.xpath(prebtnAddProduct+productName+postbtnAddProduct)));
         Thread.sleep(2000);
-//        scrollDown();
-    }
-
-    public void clickAddToCart() throws InterruptedException{
-        Thread.sleep(1000);
-        clickOnElement(btnAddToCart);
     }
 
     public void clickProceedToCheckout() throws InterruptedException{
@@ -175,5 +179,28 @@ public class StorefrontCartOffersPage extends TestBase {
 
     public void clickDoPayLater(){
         clickOnElement(btnDoPayLater);
+    }
+
+    public void  clickAvailableProduct() throws InterruptedException{
+        int productCount = driver.findElements(By.xpath(ElementsCartOffers.listAllProducts)).size();
+
+        for(int count=0; count<productCount; ++count){
+            clickOnElement(driver.findElements(By.xpath(ElementsCartOffers.listAllProducts)).get(count));
+            Thread.sleep(5000);
+            clickOnElement(btnAddToCart);
+            Thread.sleep(2000);
+            try{
+                if(isElementPresent(By.xpath(ElementsCartOffers.btnProceedToCheckout))){
+                    Thread.sleep(2000);
+                    clickProceedToCheckout();
+                    break;
+                }
+            }catch (Exception e){
+                Thread.sleep(2000);
+                clickOnElement(btnBack);
+                Thread.sleep(3000);
+                continue;
+            }
+        }
     }
 }
