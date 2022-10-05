@@ -26,7 +26,7 @@ public class ElementsCartOffers {
 
     public static final String listOfferNames = "//p[@class='MuiTypography-root MuiTypography-body1 css-bbwgo4']";
 
-    public static final String btlOfferCheckBox = "//input[@value='2431165d-7c89-41aa-a068-f2016e5f9680']";
+    public static final String btlOfferCheckBox = "//input[@class='PrivateSwitchBase-input css-1m9pwf3']";
 
     public static final String btnApplyOffer = "//button[@class='MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root  css-1umwe20']";
 
