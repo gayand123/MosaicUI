@@ -15,5 +15,7 @@ public class DomainConstants {
     public static final int maxReTryCount=3;
     public static final String browserMode = "--incognito";  // for incognito browser mode = "--incognito" , for normal browser mode  = "normal";
 
-    public static final String offerName = "OGS";
+    public static final String offerName = "Auto -Ind Offer 01";
+
+    public static final String expiredTag = "Expired";
 }
