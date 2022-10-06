@@ -4,6 +4,7 @@ import com.mosaic.functionlayer.CustomerLoyaltyView;
 import com.mosaic.pages.storeFrontModule.StorefrontRewardsPage;
 import com.mosaic.util.DomainConstants;
 import com.mosaic.util.TestBase;
+import org.checkerframework.dataflow.qual.TerminatesExecution;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -33,6 +34,24 @@ public class StorefrontRewardsTest01 extends TestBase {
         Thread.sleep(2000);
         storefrontRewardsPage.getPointBalance();
         Assert.assertEquals(storefrontRewardsPage.getPointBalance(),customerPoints);
+    }
+
+    @Test
+    public void checkAvailabilityOfPointBalanceBar() throws InterruptedException {
+        setupPreRequisites(DomainConstants.browserMode);
+        storeFrontUserLogin();
+        StorefrontRewardsPage storefrontRewardsPage = PageFactory.initElements(driver, StorefrontRewardsPage.class);
+        storefrontRewardsPage.clickButtonAvator();
+        Thread.sleep(2000);
+        storefrontRewardsPage.clickBtnRewards();
+        Thread.sleep(2000);
+        storefrontRewardsPage.getPointBalance();
+        Assert.assertEquals(storefrontRewardsPage.isPointBalanceBarVisibleWhenEnabledLevel(),true);
+        /*
+        * Need to add code for go to previous tab
+        * driver.switchTo().window(driver.getWindowHandle());
+        * */
+        Assert.assertEquals(storefrontRewardsPage.isPointBalanceBarVisibleWhenDisabledLevel(),true);
     }
 
 

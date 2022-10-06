@@ -18,4 +18,6 @@ public class ElementsRewards {
     public static final String txtDate = "//td[@class='css-15px8hg']";
 
     public static final String btnClosePointHistory="//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeStart MuiIconButton-sizeLarge css-dcgygl']";
+
+    public static final String lblPointBalanceBar = "//div[@class='MuiBox-root css-1c3l4rb']";
 }
