@@ -21,7 +21,7 @@ public class AdminLoginTest extends TestBase {
         adminLoginPage.enterAdminPassword();
         adminLoginPage.clickLogin();
         Thread.sleep(2000);
-        Assert.assertEquals(adminLoginPage.getLoginMessage(),"Hi, Merchant");
+        Assert.assertEquals(adminLoginPage.getLoginMessage(),DomainConstants.adminWelcomeMessage);
 
     }
 

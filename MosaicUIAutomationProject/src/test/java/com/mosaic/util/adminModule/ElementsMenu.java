@@ -6,7 +6,7 @@ public class ElementsMenu {
     public static final String btnSignIn = "//*[@id=\"__next\"]/header/div/div[2]/button";
     public static final String txtUserEmail = "//*[@id=\"mui-1\"]";
     public static final String btnLogin = "/html/body/div[2]/div[3]/div[3]/form/div[2]/button";
-    public static final String txtLoginMessage = "//*[@id=\"__next\"]/header/div/div[3]/div[1]/p";
+    public static final String txtLoginMessage = "//h2[contains(text(),'Welcome to Admin Panel')]";
     // Admin Menu Elements
     public static final String btnMenu ="//*[@id=\"__next\"]/header/div/div[1]/button/span[1]/img";
     public static final String btnLoyalty="//*[text()='Loyalty']";

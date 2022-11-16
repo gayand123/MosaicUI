@@ -18,4 +18,14 @@ public class DomainConstants {
     public static final String offerName = "Auto -Ind Offer 01";
 
     public static final String expiredTag = "Expired";
+
+    public static final String adminWelcomeMessage = "Welcome to Admin Panel";
+
+    public static final String rewardDescription = "Loyalty programs, sponsored by retailers and other businesses, offer rewards, discounts, and other special incentives as a way to attract and retain customers.";
+
+    public static final int thresholdOrderAmount = 50;
+
+    public static final String percentageAmount = "20";
+
+    public static final String  redeemPoints = "20";
 }
