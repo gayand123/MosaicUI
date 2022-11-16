@@ -38,6 +38,9 @@ public class StorefrontRewardsPage extends TestBase {
     @FindBy(xpath = ElementsRewards.btnClosePointHistory)
     private WebElement btnClosePointHistory;
 
+    @FindBy(xpath = ElementsRewards.lblPointBalanceBar)
+    private WebElement lblPointBalanceBar;
+
     public void clickButtonAvator() throws InterruptedException{
         clickOnElement(btnAvator);
         Thread.sleep(2000);
@@ -102,5 +105,33 @@ public class StorefrontRewardsPage extends TestBase {
 
     public void clickClosePointHistory(){
         clickOnElement(btnClosePointHistory);
+    }
+
+    public boolean isPointBalanceBarVisibleWhenEnabledLevel(){
+        try{
+            if(isElementPresentAndDisplay(lblPointBalanceBar)){
+        System.out.println("Point balace bar present" );
+                return true;
+            }else{
+                return false;
+            }
+        }catch(Exception e){
+            System.out.println("Point balace bar Not Present");
+            return true;
+        }
+    }
+
+    public boolean isPointBalanceBarVisibleWhenDisabledLevel(){
+        try{
+            if(isElementPresentAndDisplay(lblPointBalanceBar)){
+                System.out.println("Point balace bar present" );
+                return false;
+            }else{
+                return true;
+            }
+        }catch(Exception e){
+            System.out.println("Point balace bar Not Present");
+            return true;
+        }
     }
 }

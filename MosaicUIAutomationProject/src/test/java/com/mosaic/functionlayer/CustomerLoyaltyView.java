@@ -1,6 +1,7 @@
 package com.mosaic.functionlayer;
 
 import com.mosaic.pages.adminModule.AdminCustomerPage;
+import com.mosaic.pages.adminModule.AdminLoyaltyPage;
 import com.mosaic.pages.adminModule.AdminMenuPage;
 import com.mosaic.util.DomainConstants;
 import com.mosaic.util.TestBase;
@@ -32,5 +33,17 @@ public class CustomerLoyaltyView extends TestBase {
         customerLoyaltyPoints = Integer.valueOf(adminCustomerPage.getCustomerCurrentPoints());
         driver.close();
         return customerLoyaltyPoints;
+    }
+
+    public void changeLoyaltyLevels() throws InterruptedException{
+        userLogin();
+        AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
+        AdminLoyaltyPage adminLoyaltyPage = PageFactory.initElements(driver, AdminLoyaltyPage.class);
+        adminMenuPage.clickMenu();
+        adminMenuPage.clickbtnLoyalty();
+        Thread.sleep(2000);
+        adminLoyaltyPage.clickEditLevels();
+        adminLoyaltyPage.disableLevels();
+
     }
 }
