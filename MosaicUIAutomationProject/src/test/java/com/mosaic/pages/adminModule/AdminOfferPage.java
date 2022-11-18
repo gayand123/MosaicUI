@@ -1,19 +1,23 @@
 package com.mosaic.pages.adminModule;
 
 import com.mosaic.util.DomainConstants;
+import com.mosaic.util.adminModule.ElementsCustomers;
 import com.mosaic.util.adminModule.ElementsOffers;
 import com.mosaic.util.TestBase;
-import org.junit.experimental.theories.Theories;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.KeyUpAction;
 import org.openqa.selenium.support.FindBy;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.Screen;
 
 
-import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class AdminOfferPage extends TestBase {
     @FindBy(xpath = ElementsOffers.btnCreateOffer)
@@ -92,6 +96,24 @@ public class AdminOfferPage extends TestBase {
     private WebElement lblErrorMessageSmallImage;
     @FindBy(xpath = ElementsOffers.btnCloseOfferCreation)
     private WebElement btnCloseOfferCreation;
+
+    @FindBy(xpath = ElementsOffers.lblOffersPrograms)
+    private WebElement lblOffersPrograms;
+
+    @FindBy(xpath = ElementsOffers.lblOfferTypes)
+    private WebElement lblOfferTypes;
+
+    @FindBy(xpath = ElementsCustomers.btnNextPageArrow)
+    private WebElement btnNextPageArrow;
+
+    @FindBy(xpath = ElementsOffers.lblOfferEndDate)
+    private WebElement lblOfferEndDate;
+
+    @FindBy(xpath = ElementsOffers.lblOfferStatus)
+    private WebElement lblOfferStatus;
+
+    @FindBy(xpath = ElementsOffers.lblOfferName)
+    private WebElement lblOfferName;
 
     public void clickCreatebtnOffer() {
         waitUntilVisibilityOfElement(By.xpath(ElementsOffers.btnCreateOffer));
@@ -261,6 +283,90 @@ public class AdminOfferPage extends TestBase {
 
     public String smallImageErrorMessage(){
         return getElementText(lblErrorMessageSmallImage);
+    }
+
+    public String getOfferText() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return getElementText(lblOffersPrograms);
+    }
+
+    public int getOfferCount() {
+        String offerCount = replacement(getOfferText(), "Offers Programs ");
+        String result = StringUtils.substringBetween(offerCount, "(", ")");
+        int intOfferCount = 0;
+        intOfferCount = Integer.parseInt(result);
+
+        return intOfferCount;
+    }
+public boolean checkOfferEndAndIsActive(String offerEndDate) throws ParseException{
+
+    String pattern = "MM/dd/yyyy";
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+    String todayDate = simpleDateFormat.format(new Date());
+
+    if(offerEndDate.equals("N/A")){
+        return true;
+    }else{
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.parse(todayDate).before(sdf.parse(offerEndDate));
+    }
+}
+
+public boolean  checkOfferStatus(String offerStatus){
+        if(offerStatus.equals("Active")){
+            return true;
+        }else{
+            return false;
+        }
+}
+    public List<String>  gettingActiveSignUpAndOrderTotalOffers(double resultPerPage) throws InterruptedException, ParseException {
+
+        List<String> offerNames = new ArrayList<>();
+
+        double offerCount = getOfferCount();
+        double pageCount = offerCount / resultPerPage;
+        int correctPageCount = (int) Math.ceil(pageCount);
+        int tempOfferCount = 0;
+
+        int tableRowCount = driver.findElements(By.xpath(ElementsCustomers.tblRowCounts)).size();
+        for (int temp = 0; temp <= correctPageCount; temp++) {
+            tempOfferCount = driver.findElements(By.xpath(ElementsOffers.lblOfferTypes)).size();
+
+            for (int x = 0; x < tempOfferCount; x++) {
+                String offerType = driver.findElements(By.xpath(ElementsOffers.lblOfferTypes)).get(x).getText();
+
+                  if(offerType.equals("Order Total Discount")|| offerType.equals("Signup Discount")){
+                      String offerName = driver.findElements(By.xpath(ElementsOffers.lblOfferName)).get(x).getText();
+                      String OfferEndDate = driver.findElements(By.xpath(ElementsOffers.lblOfferEndDate)).get(x).getText();
+                      String offerStatus = driver.findElements(By.xpath(ElementsOffers.lblOfferStatus)).get(x).getText();
+
+                      boolean isEndDateNotReached = checkOfferEndAndIsActive(OfferEndDate);
+                      boolean isOfferStatusActive;
+                      if (isEndDateNotReached){
+                          isOfferStatusActive = checkOfferStatus(offerStatus);
+                          if(isOfferStatusActive){
+                              offerNames.add(offerName);
+                          }else{
+                              continue;
+                          }
+                      }
+
+                  }else{
+                      continue;
+                  }
+            }
+            tableRowCount = tableRowCount + tempOfferCount;
+            if (isElementEnabled(btnNextPageArrow) == true) {
+                clickOnElement(btnNextPageArrow);
+            }
+            scrollDown();
+        }
+
+        return offerNames;
     }
 }
 

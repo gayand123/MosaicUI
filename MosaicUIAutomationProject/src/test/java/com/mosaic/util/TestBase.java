@@ -34,10 +34,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
+import java.util.*;
 import java.util.NoSuchElementException;
-import java.util.Properties;
-import java.util.Random;
 import java.util.logging.Logger;
 
 import jxl.Sheet;
@@ -566,4 +564,12 @@ public class TestBase {
         return "Automation Reward : " + name;
     }
 
+    public static void  switchToWindow(int index){
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(index));
+    }
+
+    public static void  navigateToURL(String url) {
+        driver.get(url);
+    }
 }
