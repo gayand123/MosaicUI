@@ -58,4 +58,15 @@ public class ElementsOffers {
     public static final String  btnUploadImage ="/html/body/div[3]/div[3]/div/form/div/div[1]/div[2]/div[2]/div[5]/div/div/div/div[3]";
     public static final String lblErrorMessageSmallImage ="/html/body/div[3]/div[3]/div/form/div/div[1]/div[2]/div[2]/div[5]/div/div[2]/h6";
     public static final String btnCloseOfferCreation ="/html/body/div[3]/div[3]/div/form/div/div[1]/div[1]/button";
+
+    public static final String lblOffersPrograms ="//h6[@id='subtitle1']";
+
+    public static final String lblOfferTypes ="//div[@class='MuiDataGrid-virtualScrollerRenderZone css-1inm7gi']/div/div[1]/p";
+
+    public static final String lblOfferEndDate = "//div[@class='MuiDataGrid-virtualScrollerRenderZone css-1inm7gi']/div/div[4]/p";
+
+    public static final String lblOfferStatus = "//div[@class='MuiDataGrid-virtualScrollerRenderZone css-1inm7gi']/div/div[5]/p";
+
+    public static final String lblOfferName = "//div[@class='MuiDataGrid-virtualScrollerRenderZone css-1inm7gi']/div/div[2]/p";
 }
+

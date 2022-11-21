@@ -30,7 +30,7 @@ public class AdminRewardsTest extends TestBase {
         adminRewardsPage.clickbtnCreateNewRewards();
         adminRewardsPage.enterRewardName();
         adminRewardsPage.enterRewardDescription(DomainConstants.rewardDescription);
-        adminRewardsPage.selectRedeemableDiscountType("In Percentage");
+//        adminRewardsPage.selectRedeemableDiscountType("In USD");
         adminRewardsPage.enterThresholdOrderAmount(DomainConstants.thresholdOrderAmount);
         Thread.sleep(2000);
         adminRewardsPage.enterRedeemPoints(DomainConstants.redeemPoints);

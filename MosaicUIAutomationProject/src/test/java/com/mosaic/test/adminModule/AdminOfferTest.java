@@ -3,13 +3,22 @@ package com.mosaic.test.adminModule;
 import com.mosaic.datalayer.TestDataProvider;
 import com.mosaic.pages.adminModule.AdminMenuPage;
 import com.mosaic.pages.adminModule.AdminOfferPage;
+import com.mosaic.pages.storeFrontModule.HomeOffersPage;
+import com.mosaic.pages.storeFrontModule.StorefrontLoginPage;
 import com.mosaic.util.DomainConstants;
 import com.mosaic.util.TestBase;
+import org.junit.experimental.theories.Theories;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
 import org.sikuli.script.FindFailed;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminOfferTest extends TestBase {
     @BeforeClass
@@ -239,5 +248,28 @@ public class AdminOfferTest extends TestBase {
         Assert.assertEquals(adminOfferPage.smallImageErrorMessage(), errorMessage);
         adminOfferPage.clickCloseOfferForm();
     }
+
+    @Test(priority = 10)
+    public void gettingSignUpAndOrderTotalOffers() throws InterruptedException, ParseException {
+        AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
+        adminMenuPage.clickMenu();
+        adminMenuPage.clickbtnOffer();
+        adminMenuPage.getTextBtnOffer();
+        AdminOfferPage adminOfferPage = PageFactory.initElements(driver, AdminOfferPage.class);
+        List<String> offerNames =  adminOfferPage.gettingActiveSignUpAndOrderTotalOffers(DomainConstants.resultPerPage10);
+        StorefrontLoginPage storefrontLoginPage = PageFactory.initElements(driver, StorefrontLoginPage.class);
+        storefrontLoginPage.navigateToLandingPage(properties.getProperty("storeFrontBaseURL"),0);
+        storefrontLoginPage.clickValidateAgeButton();
+        Thread.sleep(2000);
+        List<String> guestUserOfferName = storefrontLoginPage.getGuestUserOfferNames();
+        Assert.assertEquals(guestUserOfferName.stream().anyMatch(element -> offerNames.contains(element)),true);
+        Assert.assertEquals(storefrontLoginPage.checkTextContainsInsideOffers(),true);
+        Thread.sleep(2000);
+        Assert.assertEquals(storefrontLoginPage.verifySignUpToViewMoreButtonFunctionality(),"Sign In");
+        Thread.sleep(2000);
+        storefrontLoginPage.closeSignInPanel();
+
+    }
+
 
 }
