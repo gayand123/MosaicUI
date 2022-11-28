@@ -7,7 +7,10 @@ import com.mosaic.util.DomainConstants;
 import com.mosaic.util.RetryAnalyzer;
 import com.mosaic.util.TestBase;
 import org.openqa.selenium.support.PageFactory;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Screen;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -19,7 +22,7 @@ public class AdminRewardsTest extends TestBase {
     }
 
     @Test
-    public void createReward() throws InterruptedException {
+    public void createReward() throws InterruptedException,FindFailed {
         AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
         AdminRewardsPage adminRewardsPage = PageFactory.initElements(driver, AdminRewardsPage.class);
         adminMenuPage.clickMenu();
@@ -31,6 +34,11 @@ public class AdminRewardsTest extends TestBase {
         adminRewardsPage.enterRewardName();
         adminRewardsPage.enterRewardDescription(DomainConstants.rewardDescription);
 //        adminRewardsPage.selectRedeemableDiscountType("In USD");
+        Thread.sleep(2000);
+        adminRewardsPage.clickBrowseImage();
+        Thread.sleep(4000);
+        adminRewardsPage.clickUploadImage();
+        Thread.sleep(5000);
         adminRewardsPage.enterThresholdOrderAmount(DomainConstants.thresholdOrderAmount);
         Thread.sleep(2000);
         adminRewardsPage.enterRedeemPoints(DomainConstants.redeemPoints);
@@ -38,15 +46,6 @@ public class AdminRewardsTest extends TestBase {
         adminRewardsPage.enterPercentageAmount(DomainConstants.percentageAmount);
         Thread.sleep(2000);
         adminRewardsPage.clickCreateRewardButton();
-
-
-
-//        Assert.assertEquals(adminMenuPage.getTextOfRedeemPoints(),"Redeem Points");
-//        AdminLoyaltyPage adminLoyaltyPage = PageFactory.initElements(driver, AdminLoyaltyPage.class);
-//        Assert.assertEquals(adminLoyaltyPage.isValueOfRedeemPointsAvailableAndClickable(),false);
-//        Assert.assertEquals(adminLoyaltyPage.isValueOfRedeemDiscountPercentageAvailableAndClickable(),false);
-//        Assert.assertEquals(adminLoyaltyPage.isValueOfRedeemDiscountAvailableAndClickable(),false);
-
     }
 
     @Test
@@ -60,4 +59,9 @@ public class AdminRewardsTest extends TestBase {
         Thread.sleep(2000);
         adminRewardsPage.checkRewardsCount();
     }
+    @AfterClass
+    public void closeBrowser(){
+        driver.close();
+    }
+
 }

@@ -64,11 +64,12 @@ public class AdminCustomerTest02 extends TestBase {
         adminMenuPage.clickbtnCustomers();
         Thread.sleep(2000);
         AdminCustomerPage adminCustomerPage = PageFactory.initElements(driver, AdminCustomerPage.class);
-        Assert.assertEquals(adminCustomerPage.getCustomerText().contains("Customers"), true);
+        Thread.sleep(2000);
+        Assert.assertEquals(adminCustomerPage.getCustomerText().contains(DomainConstants.customersTXT), true);
         adminCustomerPage.clickSpecificEmailActionInCustomersList(DomainConstants.resultPerPage10,DomainConstants.userEmail);
         Thread.sleep(2000);
         adminCustomerPage.clickViewEditPoints();
-        Assert.assertEquals(adminCustomerPage.getViewEditPointsText(),"Loyalty Points Summary");
+        Assert.assertEquals(adminCustomerPage.getViewEditPointsText(),DomainConstants.loyaltyPointsSummaryTXT);
         customerLoyaltyPoints = Integer.valueOf(adminCustomerPage.getCustomerCurrentPoints());
        // Assert.assertEquals(adminCustomerPage.getCustomerCurrentPoints(),"18963");
 

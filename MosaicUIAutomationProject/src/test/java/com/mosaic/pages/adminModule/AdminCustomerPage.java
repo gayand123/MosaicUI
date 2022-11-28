@@ -280,8 +280,8 @@ public class AdminCustomerPage extends TestBase {
         }
         System.out.println("total row Count  " + rowCount);
         int totalCount =(pageCountIn30*30)+lastpageCount;
-        return totalCount;
-
+//        return totalCount;
+        return (int)customerCount;
     }
 }
 

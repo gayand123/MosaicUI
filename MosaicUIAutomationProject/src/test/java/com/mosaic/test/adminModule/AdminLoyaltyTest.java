@@ -18,7 +18,7 @@ public class AdminLoyaltyTest  extends TestBase {
         userLogin();
     }
 
-    @Test(priority = 1,retryAnalyzer= RetryAnalyzer.class)
+    @Test(priority = 1,retryAnalyzer= RetryAnalyzer.class, enabled = false)
     public void verifyViewRedeemPointsValue() throws InterruptedException {
         AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
         adminMenuPage.clickMenu();
@@ -31,7 +31,7 @@ public class AdminLoyaltyTest  extends TestBase {
 
     }
 
-    @Test(priority = 2,retryAnalyzer= RetryAnalyzer.class)
+    @Test(priority = 2,retryAnalyzer= RetryAnalyzer.class, enabled = false)
     public void verifyEditRedeemPointsValue() throws InterruptedException {
         System.out.println("I am in 1");
         AdminMenuPage adminMenuPage = PageFactory.initElements(driver, AdminMenuPage.class);
@@ -48,6 +48,6 @@ public class AdminLoyaltyTest  extends TestBase {
     }
     @AfterClass
     public void closeBrowser(){
-        //driver.close();
+        driver.close();
     }
 }

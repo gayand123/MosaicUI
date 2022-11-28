@@ -115,6 +115,17 @@ public class AdminOfferPage extends TestBase {
     @FindBy(xpath = ElementsOffers.lblOfferName)
     private WebElement lblOfferName;
 
+    @FindBy(xpath = ElementsOffers.txtDiscountAmountForOrderTotalAndBirthday)
+    private WebElement txtDiscountAmountForOrderTotalAndBirthday;
+
+    @FindBy(xpath = ElementsOffers.txtMinimumOrderAmountForOrderTotalAndBirthday)
+    private WebElement txtMinimumOrderAmountForOrderTotalAndBirthday;
+
+    public String getFirstOfferName(){
+        String offerName = driver.findElements(By.xpath(ElementsOffers.lblOfferName)).get(0).getText();
+        System.out.println("**OfferName Size** : -" + offerName);
+        return offerName;
+    }
     public void clickCreatebtnOffer() {
         waitUntilVisibilityOfElement(By.xpath(ElementsOffers.btnCreateOffer));
         clickOnElement(btnCreateOffer);
@@ -150,20 +161,49 @@ public class AdminOfferPage extends TestBase {
 
     }
 
+    public void enterOfferName() throws InterruptedException {
+        moveAndClick(txtOfferName);
+        String offerName = randomOfferName(05);
+
+        // Thread.sleep(1000);
+        txtOfferName.sendKeys(offerName);
+
+    }
+    public void enterPromoCode() throws InterruptedException {
+        moveAndClick(txtPromoCode);
+        String promoCode = randomPromoCode(05);
+
+        // Thread.sleep(1000);
+        txtPromoCode.sendKeys(promoCode);
+
+    }
+
     public void enterStartDate() {
         selectValueFromAutoSuggestionListInTextField(txtStartDate, getTodaydate());
     }
+    public void enterStartDateAsFutureDate() {
+        selectValueFromAutoSuggestionListInTextField(txtStartDate, getFutureDate());
+    }
+
 
     public void enterEndDate(String endDate) {
         selectValueFromAutoSuggestionListInTextField(txtEndDate, endDate);
     }
 
+    public void enterEndDateAsTomorrowDate() {
+        selectValueFromAutoSuggestionListInTextField(txtEndDate, getTomorrowDate());
+    }
+
+    public void enterEndDateAsFutureDate() {
+        selectValueFromAutoSuggestionListInTextField(txtEndDate, getFutureDate());
+    }
     public void enterPromoCode(String promocode) {
         // moveAndClick(txtPromoCode);
         clearAndType(txtPromoCode, promocode);
     }
 
-    public void selectOfferTypeGroup(String offerTypeGroup) {
+    public void selectOfferTypeGroup(String offerTypeGroup) throws InterruptedException{
+        scrollDown();
         clickOnElement(btnDropDownOfferTypeGroup);
         if (offerTypeGroup == "Discount") {
             System.out.println("I'm innnn");
@@ -208,6 +248,14 @@ public class AdminOfferPage extends TestBase {
 
     public void enterMinimumOrderAmount() {
         clearAndType(txtMinimumOrderAmount, DomainConstants.minimumOrderamount);
+    }
+
+    public void enterDiscountAmountForOrderTotalAndBirthday() {
+        clearAndType(txtDiscountAmountForOrderTotalAndBirthday, DomainConstants.discountAmount);
+    }
+
+    public void enterMinimumOrderAmountForOrderTotalAndBirthday() {
+        clearAndType(txtMinimumOrderAmountForOrderTotalAndBirthday, DomainConstants.minimumOrderamount);
     }
 
     public void clickSaveOffer() {
@@ -262,18 +310,32 @@ public class AdminOfferPage extends TestBase {
     }
     public void clickBrowseImage(String filePath,String imagePath) throws FindFailed, InterruptedException {
         javaScriptClick(btnBrowseImage);
-        Thread.sleep(2000);
+        Thread.sleep(6000);
         //  File file = new File("images\\NewOffer.PNG");
         //   System.out.println(file.getAbsolutePath());
         //  btnBrowseImage.sendKeys(file.getAbsolutePath());
         Screen screen = new Screen();
-        screen.find(filePath).click();
-        screen.type(imagePath);
+        screen.find("C:\\images\\FileName.png");
+        screen.click();
+        screen.type("C:\\images\\NewOffer.png");
       //  Thread.sleep(2000);
         //   screen.find("D:\\MosaicUIAutomationProject\\MosaicUIAutomationProject\\MosaicUIAutomationProject\\images\\1662388240258.png");
         // screen.click();
-        screen.type(Key.ENTER);
-        screen.type(Key.ENTER);
+//        screen.type(Key.ENTER);
+//        screen.type(Key.ENTER);
+        screen.find("C:\\images\\Open.png");
+        screen.click();
+    }
+
+    public void clickBrowseSmallImage() throws FindFailed, InterruptedException {
+        javaScriptClick(btnBrowseImage);
+        Thread.sleep(6000);
+        Screen screen = new Screen();
+        screen.find("C:\\images\\FileName.png");
+        screen.click();
+        screen.type("C:\\images\\SmallImageNew.jpeg");
+        screen.find("C:\\images\\Open.png");
+        screen.click();
     }
 
     public void clickUploadImage() {

@@ -20,9 +20,13 @@ public class ElementsRewards {
 
     public static final String enterPercentageAmount = "//input[@name='redeemDiscount']";
 
-    public static final String enterRedeemPoints = "//input[@id='mui-21']";
+    public static final String enterRedeemPoints = ":nth-child(1).MuiInputBase-root input:not([name*='redeem'])";
 
     public static final String btnCreateReward = "//button[@class='MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root  css-1c6f7v4']";
 
     public static final String lstRewardsList = "//div[@class='MuiGrid-root MuiGrid-container MuiGrid-item css-ncse8y']";
+
+    public static final String btnBrowseImage = "//input[@id='raised-button-file']";
+
+    public static final String btnUploadImage = "/html/body/div[3]/div[3]/div/div[1]/div[2]/div/div/div[4]/div/div[1]/div/svg/path[1]";
 }

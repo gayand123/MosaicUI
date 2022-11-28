@@ -7,6 +7,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.python.antlr.op.In;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Screen;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,7 +43,7 @@ public class AdminRewardsPage extends TestBase {
     @FindBy(xpath = ElementsRewards.enterPercentageAmount)
     private WebElement enterPercentageAmount;
 
-    @FindBy(xpath = ElementsRewards.enterRedeemPoints)
+    @FindBy(css = ElementsRewards.enterRedeemPoints)
     private WebElement enterRedeemPoints;
 
     @FindBy(xpath = ElementsRewards.btnCreateReward)
@@ -49,6 +51,12 @@ public class AdminRewardsPage extends TestBase {
 
     @FindBy(xpath = ElementsRewards.lstRewardsList)
     private WebElement lstRewardsList;
+
+    @FindBy(xpath = ElementsRewards.btnUploadImage)
+    private WebElement btnUploadImage;
+
+    @FindBy(xpath = ElementsRewards.btnBrowseImage)
+    private WebElement btnBrowseImage;
 
         public void clickbtnRewards(){
         try {
@@ -75,7 +83,6 @@ public class AdminRewardsPage extends TestBase {
         // Thread.sleep(1000);
         txtDescription.sendKeys(description);
         Thread.sleep(2000);
-        scrollDown();
 
     }
 
@@ -118,6 +125,24 @@ public class AdminRewardsPage extends TestBase {
         List<Integer> rewardsList = new ArrayList<>();
         int rewards = driver.findElements(By.xpath(ElementsRewards.lstRewardsList)).size();
     System.out.println("oooooooooooooo" +  rewards);
+    }
+
+    public void clickBrowseImage() throws FindFailed, InterruptedException {
+        javaScriptClick(btnBrowseImage);
+        Thread.sleep(6000);
+        Screen screen = new Screen();
+        screen.find("C:\\images\\FileName.png");
+        screen.click();
+        screen.type("C:\\images\\NewOffer.png");
+        screen.find("C:\\images\\Open.png");
+        screen.click();
+    }
+
+    public void clickUploadImage() throws FindFailed, InterruptedException{
+        Screen screen = new Screen();
+        screen.find("C:\\images\\Upload.png");
+        screen.click();
+        screen.click();
     }
 
 }

@@ -538,6 +538,20 @@ public class TestBase {
         return today;
     }
 
+    public static String getTomorrowDate() {
+        LocalDate date = LocalDate.now(ZoneId.of("America/Montreal")).plusDays(1);
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String today = date.format(formatter1);
+        return today;
+    }
+
+    public static String getFutureDate() {
+        LocalDate date = LocalDate.now(ZoneId.of("America/Montreal")).plusDays(30);
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String today = date.format(formatter1);
+        return today;
+    }
+
     public void scrollDown() throws InterruptedException {
         Actions act = new Actions(driver);
         act.sendKeys(Keys.PAGE_DOWN).build().perform(); //Page Down
@@ -562,6 +576,28 @@ public class TestBase {
             sb.append(chars.charAt(random.nextInt(chars.length())));
         String name = sb.toString();
         return "Automation Reward : " + name;
+    }
+
+    public static String randomOfferName(int len){
+        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk"
+                +"lmnopqrstuvwxyz!@#$%&";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < len; i++)
+            sb.append(chars.charAt(random.nextInt(chars.length())));
+        String name = sb.toString();
+        return "Automation Offer : " + name;
+    }
+
+    public static String randomPromoCode(int len){
+        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk"
+                +"lmnopqrstuvwxyz!@#$%&";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < len; i++)
+            sb.append(chars.charAt(random.nextInt(chars.length())));
+        String name = sb.toString();
+        return "AutomationBlast-" + name;
     }
 
     public static void  switchToWindow(int index){
