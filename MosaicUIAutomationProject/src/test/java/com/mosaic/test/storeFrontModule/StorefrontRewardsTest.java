@@ -14,7 +14,8 @@ public class StorefrontRewardsTest extends TestBase {
     Integer customerPoints;
     @BeforeClass
     public void storefrontUserLogin() throws InterruptedException {
-    storeFrontUserLogin();
+        setupPreRequisites(DomainConstants.browserMode);
+        storeFrontUserLogin();
     }
 
   /*  @Test()
@@ -47,6 +48,7 @@ public class StorefrontRewardsTest extends TestBase {
     @Test
     public void checkDateOrderWithValidCredentials() throws Exception {
         StorefrontRewardsPage storefrontRewardsPage = PageFactory.initElements(driver, StorefrontRewardsPage.class);
+        Thread.sleep(2000);
         storefrontRewardsPage.clickButtonAvator();
         Thread.sleep(2000);
         storefrontRewardsPage.clickBtnRewards();

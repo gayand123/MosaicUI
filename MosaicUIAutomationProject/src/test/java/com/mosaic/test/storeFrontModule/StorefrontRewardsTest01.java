@@ -28,6 +28,7 @@ public class StorefrontRewardsTest01 extends TestBase {
         setupPreRequisites(DomainConstants.browserMode);
         storeFrontUserLogin();
         StorefrontRewardsPage storefrontRewardsPage = PageFactory.initElements(driver, StorefrontRewardsPage.class);
+        Thread.sleep(2000);
         storefrontRewardsPage.clickButtonAvator();
         Thread.sleep(2000);
         storefrontRewardsPage.clickBtnRewards();

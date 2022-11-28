@@ -20,11 +20,13 @@ public class StorefrontCartOffersTest extends TestBase {
     @Test
     public void applyOffers() throws InterruptedException {
         StorefrontCartOffersPage storefrontCartOffersPage = PageFactory.initElements(driver, StorefrontCartOffersPage.class);
+        Thread.sleep(3000);
         storefrontCartOffersPage.clickBtnOrderNow();
         Thread.sleep(5000);
         storefrontCartOffersPage.clickBtnSecondOrderNow();
         Thread.sleep(5000);
         storefrontCartOffersPage.clickAvailableProduct();
+        Thread.sleep(2000);
         storefrontCartOffersPage.getQualifyOfferCount();
         Thread.sleep(2000);
         storefrontCartOffersPage.clickArrowIcon();
@@ -37,7 +39,7 @@ public class StorefrontCartOffersTest extends TestBase {
         storefrontCartOffersPage.selectOffer();
         storefrontCartOffersPage.getDiscountValueByRemovePercentage();
         storefrontCartOffersPage.clickApplyOffer();
-        Thread.sleep(5000);
+        Thread.sleep(6000);
         Assert.assertEquals(storefrontCartOffersPage.getSystemAppliedDiscount(),storefrontCartOffersPage.getCalculatedDiscount());
         Thread.sleep(2000);
         storefrontCartOffersPage.clickCheckOutButton();
@@ -48,7 +50,7 @@ public class StorefrontCartOffersTest extends TestBase {
     }
     @AfterClass
     public void closeBrowser(){
-        //driver.close();
+        driver.close();
     }
 
 }

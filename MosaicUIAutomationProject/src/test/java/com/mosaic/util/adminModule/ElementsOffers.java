@@ -40,6 +40,11 @@ public class ElementsOffers {
 
     public static final String txtMinimumOrderAmount ="//input[@name='inputParamList.3.value']";
 
+    public static final String txtDiscountAmountForOrderTotalAndBirthday ="//input[@name='inputParamList.1.value']";
+
+
+    public static final String txtMinimumOrderAmountForOrderTotalAndBirthday ="//input[@name='inputParamList.2.value']";
+
 
     public static final String radioButtonFixedAmount= "//input[@value='FIXED AMOUNT']";
 
@@ -48,10 +53,10 @@ public class ElementsOffers {
     public static final String lbnDateTimeffer= "//*[@id='menu-offerGroup']/div[3]/ul/li[2]";
 
     public static final String lblOfferSavingErrorMessage = "//div[@class='MuiAlert-message css-1xsto0d']";
-    public static final String btnCloseCreateOfferPage ="//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeLarge css-1ljqot9']";
-    public static final String lblOfferNameRequiredMessage ="//h6[@class='MuiTypography-root MuiTypography-subtitle1 css-f5ylb3']";
+    public static final String btnCloseCreateOfferPage ="//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeLarge css-1cgg10']";
+    public static final String lblOfferNameRequiredMessage ="//h6[@class='MuiTypography-root MuiTypography-subtitle1 css-dxhip5']";
     public static final String lblOfferStartDateRequiredMessage ="/html/body/div[3]/div[3]/div/form/div/div[1]/div[2]/div[2]/div[3]/div[1]/div/div[3]/h6";
-    public static final String lblOfferTypeGroupRequiredMessage = "/html/body/div[3]/div[3]/div/form/div/div[1]/div[2]/div[2]/div[5]/div/div/div/div/div[3]/h6";
+    public static final String lblOfferTypeGroupRequiredMessage = "/html/body/div[3]/div[3]/div/form/div/div[1]/div[2]/div[2]/div[6]/div/div/div/div/div[3]/h6";
 
     public static final String lblEndDateGreaterThanStartDateOfferErrorMessage = "/html/body/div[3]/div[3]/div/form/div/div[1]/div[2]/div[2]/div[3]/div[2]/div/div[3]/h6";
     public static final String btnBrowseImage = "//*[@id=\"raised-button-file\"]";
@@ -68,5 +73,6 @@ public class ElementsOffers {
     public static final String lblOfferStatus = "//div[@class='MuiDataGrid-virtualScrollerRenderZone css-1inm7gi']/div/div[5]/p";
 
     public static final String lblOfferName = "//div[@class='MuiDataGrid-virtualScrollerRenderZone css-1inm7gi']/div/div[2]/p";
+
 }
 

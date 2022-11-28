@@ -5,6 +5,7 @@ import com.mosaic.pages.adminModule.AdminMenuPage;
 import com.mosaic.util.DomainConstants;
 import com.mosaic.util.RetryAnalyzer;
 import com.mosaic.util.TestBase;
+import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -24,7 +25,7 @@ public class AdminCustomerTest03 extends TestBase {
         adminMenuPage.clickbtnCustomers();
         Thread.sleep(2000);
         AdminCustomerPage adminCustomerPage = PageFactory.initElements(driver, AdminCustomerPage.class);
-        Assert.assertEquals(adminCustomerPage.getCustomerText().contains("Customers"), true);
+        Assert.assertEquals(adminCustomerPage.getCustomerText().contains(DomainConstants.customersTXT), true);
         Thread.sleep(2000);
         adminCustomerPage.clickResultPerpage();
         adminCustomerPage.clickResultPerPageValue(DomainConstants.resultPerPage30);

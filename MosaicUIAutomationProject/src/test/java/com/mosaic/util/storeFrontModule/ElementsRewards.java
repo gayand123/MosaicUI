@@ -9,7 +9,7 @@ public class ElementsRewards {
 
     public static final String txtUserPoints="//div[@class='css-3xxq0q']";
 
-    public static final String btnPointHistoryArrow="//div[@class='MuiGrid-root css-wjome']";
+    public static final String btnPointHistoryArrow="//div[@class='MuiGrid-root css-1uf1698']";
 
     public static final String txtCompletedPoints ="//span[@class='css-1clov26']";
 

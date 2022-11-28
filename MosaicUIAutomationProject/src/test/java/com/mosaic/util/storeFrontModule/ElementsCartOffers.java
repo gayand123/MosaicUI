@@ -3,7 +3,7 @@ package com.mosaic.util.storeFrontModule;
 public class ElementsCartOffers {
     public static final String btnOrderNow="//button[@class='MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-1t60dh0']";
 
-    public static final String btnSecondOrderNow = "//button[@class='MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root  css-9pj41r']";
+    public static final String btnSecondOrderNow = "//button[@class='MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root  css-u5ybzt']";
 
     public static final String prebtnAddProduct = "//img[contains(@alt,'";
     public static final String postbtnAddProduct ="')]";
@@ -28,7 +28,7 @@ public class ElementsCartOffers {
 
     public static final String btlOfferCheckBox = "//input[@class='PrivateSwitchBase-input css-1m9pwf3']";
 
-    public static final String btnApplyOffer = "//button[@class='MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root  css-1umwe20']";
+    public static final String btnApplyOffer = "//button[@class='MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root  css-u5ybzt']";
 
     public static final String lblDiscountValue = "//h6[@class='MuiTypography-root MuiTypography-subtitle2 css-5ilzg3']";
 
@@ -36,7 +36,7 @@ public class ElementsCartOffers {
 
     public static final String lblAppliedDiscount = "//p[@class='MuiTypography-root MuiTypography-body1 css-1wrw353']";
 
-    public static final String btnCheckout = "//button[@class='MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root  css-1lntmue']";
+    public static final String btnCheckout = "//button[@class='MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root  css-pzuswv']";
 
     public static final String btnSelectPayLater = "//div[@class='MuiCardContent-root css-d3t1vx']";
 

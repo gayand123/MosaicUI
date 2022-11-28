@@ -26,7 +26,7 @@ public class AdminCustomerTest extends TestBase {
         adminMenuPage.clickbtnCustomers();
         Thread.sleep(2000);
         AdminCustomerPage adminCustomerPage = PageFactory.initElements(driver, AdminCustomerPage.class);
-        Assert.assertEquals(adminCustomerPage.getCustomerText().contains("Customers"), true);
+        Assert.assertEquals(adminCustomerPage.getCustomerText().contains(DomainConstants.customersTXT), true);
         Assert.assertEquals(adminCustomerPage.getRowCountInCustomers(DomainConstants.resultPerPage10),adminCustomerPage.getCustomerCount());
 
        }
